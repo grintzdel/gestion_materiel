@@ -1,0 +1,40 @@
+// Base styles
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+a {
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
+
+
+// Buttons
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color: inherit;
+}
+
+.button--primary {
+
+}
+
+.button--secondary {
+
+}

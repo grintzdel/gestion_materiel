@@ -1,0 +1,9 @@
+#IDE
+.vscode
+.idea/
+
+# ENV
+.env
+
+# Composer
+vendor/
