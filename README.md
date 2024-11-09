@@ -47,6 +47,11 @@ npm install -g sass
 
 ## Lancement
 
+- configurer Composer pour avoir le dossier vendor
+```
+composer install
+```
+
 - renommer le fichier .env.example en .env et modifier ses valeurs
 
 - si l'on veut ajouter du style supplémentaire, il faut utiliser du SCSS et faire les commandes suivantes dans le terminal :
