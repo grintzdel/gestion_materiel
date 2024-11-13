@@ -25,7 +25,6 @@ class DatabaseManager
         $this->connect();
     }
 
-
     /**
      * @return void
      *
@@ -60,9 +59,8 @@ class DatabaseManager
             $query->execute($param);
             return $query->fetchAll($pdoOptions);
         } catch (PDOException $e) {
-            die("La requête SQL à échoué: " . $e->getMessage());
+            die("La requête SQL a échoué: " . $e->getMessage());
         }
-
     }
 
     /**
@@ -81,7 +79,7 @@ class DatabaseManager
             $query = $this->pdo->prepare($request);
             $query->execute($param);
         } catch (PDOException $e) {
-            die("La requête SQL à échoué: " . $e->getMessage());
+            die("La requête SQL a échoué: " . $e->getMessage());
         }
     }
 

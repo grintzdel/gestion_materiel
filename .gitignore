@@ -1,5 +1,5 @@
 #IDE
-.vscode
+.vscode/
 .idea/
 
 # ENV
@@ -7,3 +7,6 @@
 
 # Composer
 vendor/
+
+# Database
+db.sql
