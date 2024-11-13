@@ -2,7 +2,7 @@
 
     <section class="hero">
         <div class="hero__heading">
-            <h1 class="hero__heading--base">pécho ton</h1>
+            <h1 class="hero__heading--base">Pécho ton</h1>
             <h1 class="hero__heading--highlight">matos</h1>
             <h1 class="hero__heading--base">by</h1>
             <picture>
