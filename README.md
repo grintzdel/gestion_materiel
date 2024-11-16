@@ -1,6 +1,6 @@
 # Gestion Matos chambé
 
-! DEV local sous MAMP et BDD SQL !
+! DOCKER !
 
 ## Installation
 - via https :
@@ -14,24 +14,10 @@ git clone git@github.com:grintzdel/gestion_materiel.git
 ```
 
 ## Requirements
-- [Scoop](https://scoop.sh/)
-Dans PowerShell :
-```
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-```
 
 - [Git](https://git-scm.com/downloads/win)
 
-- PHP
-```
-scoop install php
-```
-
-- Composer
-```
-scoop install composer
-```
+- [Docker](https://docs.docker.com/get-docker/)
 
 - [NodeJS](https://nodejs.org/en/download/prebuilt-installer)
 
@@ -39,7 +25,6 @@ scoop install composer
 ```
 npm install -g npm
 ```
-
 - Sass
 ```
 npm install -g sass
@@ -47,8 +32,14 @@ npm install -g sass
 
 ## Lancement
 
+- lancer le docker-compose et renommer le .env.example en .env et ajouter les bonnes variables d'environnement
+```
+./start.sh
+```
+
 - configurer Composer pour avoir le dossier vendor
 ```
+cd web/
 composer install
 ```
 
@@ -57,7 +48,7 @@ composer install
 - si l'on veut ajouter du style supplémentaire, il faut utiliser du SCSS et faire les commandes suivantes dans le terminal :
 on se postionne au niveau du dossier style (dans le terminal)
 ```
-cd src/style
+cd web/src/style
 ```
 puis lancer la commande suivante :
 ```
@@ -65,5 +56,5 @@ sass --watch style.scss:../public/style.css --style compressed
 ```
 ou si l'on veut rester à la racine du projet, faire :
 ```
-sass --watch src/style/style.scss:../public/style.css --style compressed
+sass --watch web/src/style/style.scss:../public/style.css --style compressed
 ```

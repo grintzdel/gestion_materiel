@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-// Enable error reporting
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 use entity\UserEntity;
 
 $isError = false;
@@ -24,10 +19,11 @@ function loginBtn(UserEntity $user): void
     if (isset($_SESSION['user_info'])) {
         redirectPage();
     } else {
+        //var_dump($_POST);
         connection(
-            user: $user,
-            username: $_POST['username'],
-            password: $_POST['password']
+            $user,
+            $_POST['username'],
+            $_POST['password']
         );
 
         if (!$user->loggedInUser) {

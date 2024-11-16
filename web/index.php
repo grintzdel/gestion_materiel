@@ -1,5 +1,3 @@
-<?php phpinfo(); ?>
-
 <?php require_once 'src/views/partials/head.php'; ?>
 
     <section class="hero">

@@ -1,12 +1,10 @@
-#IDE
+# IDE
 .vscode/
 .idea/
 
 # ENV
-.env
-
-# Composer
-vendor/
+docker/.env
 
 # Database
+mariadb-data/
 db.sql

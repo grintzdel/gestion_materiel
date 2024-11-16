@@ -1,0 +1,37 @@
+services:
+  php:
+    image: webdevops/php-apache:7.4
+    ports:
+      - "80:80"
+      - "443:443"
+    working_dir: /app
+    volumes:
+      - ../web:/app
+    environment:
+      PHP_DATE_TIMEZONE: Europe/Paris
+      PHP_DISPLAY_ERRORS: 1
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+
+  mariadb:
+    image: mariadb
+    restart: always
+    volumes:
+      - ../mariadb-data/:/var/lib/mysql/
+    environment:
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: ${PMA_HOST}
+      PMA_USER: ${PMA_USER}
+      PMA_PASSWORD: ${PMA_PASSWORD}

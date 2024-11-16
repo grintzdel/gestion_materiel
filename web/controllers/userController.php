@@ -4,7 +4,6 @@ use entity\UserEntity;
 
 /**
  * @param UserEntity $user
- * @param string $mail
  * @param string $password
  * @return void
  *
@@ -17,8 +16,8 @@ function connection(
 ): void
 {
     $isConnect = $user->connect(
-        username: strtolower($username),
-        password: $password
+        strtolower($username),
+        $password
     );
 
     if ($isConnect) {
@@ -37,14 +36,14 @@ function recoverAllUser(
 ): array
 {
     $query = $database->select(
-        request: "SELECT * FROM User"
+        "SELECT * FROM User"
     );
 
     $userList = [];
 
     foreach ($query as $user) {
-        $userList[$user['id']] = new UserEntity(databaseManager: $database);
-        $userList[$user['id']]->recoverUserData(userID: $user['id']);
+        $userList[$user['id']] = new UserEntity($database);
+        $userList[$user['id']]->recoverUserData($user['id']);
     }
 
     return $userList;

@@ -19,35 +19,39 @@ class UserEntity
     /**
      * @param string $username
      * @param string $password
-     *
-     * @return bool|array
+     * @return bool
      *
      * Function to connect a user after form validation
+     */
+    /*
+     * TODO : Add password hash verification
      */
     public function connect(
         string $username,
         string $password
-    ): bool|array
+    ): bool
     {
         $user = $this->databaseManager->select(
-            request: "SELECT id, password FROM User WHERE username = :username",
-            param: [
+            "SELECT id, password FROM User WHERE username = :username",
+            [
                 "username" => $username,
             ]
         );
 
         if (!empty($user)) {
-            $isGoodPassword = password_verify(
+            /* $isGoodPassword = password_verify(
                 $password,
                 $user[0]["password"]
-            );
+            ); */
+
+            $isGoodPassword = $password === $user[0]["password"];
 
             if ($isGoodPassword) {
-                $dataUser = $this->recoverUserData(
-                    userID: $user[0]["id"]
+                $this->loggedInUser = $this->recoverUserData(
+                    $user[0]["id"]
                 );
 
-                return $dataUser;
+                return true;
             }
         }
         return false;
@@ -64,8 +68,8 @@ class UserEntity
     ): array
     {
         $user = $this->databaseManager->select(
-            request: "SELECT id, role, username FROM User WHERE id = :userID",
-            param: [
+            "SELECT id, role, username FROM User WHERE id = :userID",
+            [
                 "userID" => $userID,
             ]
         );
@@ -87,16 +91,16 @@ class UserEntity
     ): bool
     {
         $isGoodPassword = $this->passwordCheck(
-            password: $oldPassword
+            $oldPassword
         );
 
         if ($isGoodPassword) {
             $this->databaseManager->insert(
-                request: "UPDATE User SET password = :newPassword WHERE id = :userID",
-                param: [
+                "UPDATE User SET password = :newPassword WHERE id = :userID",
+                [
                     "newPassword" => password_hash(
-                        password: $newPassword,
-                        algo: PASSWORD_DEFAULT
+                        $newPassword,
+                        PASSWORD_DEFAULT
                     ),
                     "userID" => $this->loggedInUser[0]['id'],
                 ]
@@ -119,12 +123,12 @@ class UserEntity
     ): bool
     {
         $isGoodPassword = $this->passwordCheck(
-            password: $password
+            $password
         );
         if ($isGoodPassword) {
             $this->databaseManager->insert(
-                request: "UPDATE User SET username = :newUsername WHERE id = :userID",
-                param: [
+                "UPDATE User SET username = :newUsername WHERE id = :userID",
+                [
                     "newUsername" => $newUsername,
                     "userID" => $this->loggedInUser[0]['id'],
                 ]
@@ -145,8 +149,8 @@ class UserEntity
     ): bool
     {
         $user = $this->databaseManager->select(
-            request: "SELECT password FROM User WHERE id = :userID",
-            param: [
+            "SELECT password FROM User WHERE id = :userID",
+            [
                 "userID" => $this->loggedInUser[0]['id'],
             ]
         );
