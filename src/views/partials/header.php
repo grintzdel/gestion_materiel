@@ -3,7 +3,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 $beforeLink = '../';
 $beforeLinkNav = '';
 if ($current_page === 'index.php') {
-    $beforeLink = 'views/';
+    $beforeLink = '';
     $beforeLinkNav = 'views/pages/';
 }
 ?>
@@ -20,38 +20,45 @@ if ($current_page === 'index.php') {
                 <div class="header__nav__menu__list__items">
                     <div class="header__nav__menu__list__items__item">
                         <a href="<?= $current_page === 'index.php' ? '#' : '../../../index.php' ?>">How ?</a>
-                        <div class="header__nav__menu__list__items__item__wrapper"></div>
                     </div>
                     <div class="header__nav__menu__list__items__item">
                         <a href="<?= $beforeLinkNav . 'profil.php' ?>">Profil</a>
-                        <div class="header__nav__menu__list__items__item__wrapper"></div>
                     </div>
                     <div class="header__nav__menu__list__items__item">
                         <a href="<?= $beforeLinkNav . 'panier.php' ?>">Panier</a>
-                        <div class="header__nav__menu__list__items__item__wrapper"></div>
                     </div>
                     <div class="header__nav__menu__list__items__item">
-                        <details open>
-                            <summary>Equipements</summary>
-                            <ul>
+                        <details class="header__nav__menu__details" open>
+                            <summary class="header__nav__menu__details__heading">
+                                <a class="header__nav__menu__details__heading__title">Equipements</a>
+                                <img src="<?= $beforeLink . 'src/public/svg/open-close.svg' ?>" alt="Toogle menu">
+                            </summary>
+                            <ul class="header__nav__menu__details__list">
                                 <li><a href="<?= $beforeLinkNav . 'equipements.php?type=tout' ?>">Tout</a></li>
-                                <li><a href="<?= $beforeLinkNav . 'equipements.php?type=appareils-photo' ?>">Appareils photo</a></li>
+                                <li><a href="<?= $beforeLinkNav . 'equipements.php?type=appareils-photo' ?>">Appareils
+                                        photo</a></li>
                                 <li><a href="<?= $beforeLinkNav . 'equipements.php?type=cameras' ?>">Caméras</a></li>
                                 <li><a href="<?= $beforeLinkNav . 'equipements.php?type=micros' ?>">Micros</a></li>
-                                <li><a href="<?= $beforeLinkNav . 'equipements.php?type=enregistreurs' ?>">Enregistreurs</a></li>
+                                <li>
+                                    <a href="<?= $beforeLinkNav . 'equipements.php?type=enregistreurs' ?>">Enregistreurs</a>
+                                </li>
                                 <li><a href="<?= $beforeLinkNav . 'equipements.php?type=cables' ?>">Câbles</a></li>
-                                <li><a href="<?= $beforeLinkNav . 'equipements.php?type=adaptateurs' ?>">Adaptateurs</a></li>
+                                <li><a href="<?= $beforeLinkNav . 'equipements.php?type=adaptateurs' ?>">Adaptateurs</a>
+                                </li>
                                 <li><a href="<?= $beforeLinkNav . 'equipements.php?type=casques' ?>">Casques</a></li>
                                 <li><a href="<?= $beforeLinkNav . 'equipements.php?type=trepieds' ?>">Trépieds</a></li>
-                                <li><a href="<?= $beforeLinkNav . 'equipements.php?type=eclairages' ?>">Eclairages</a></li>
+                                <li><a href="<?= $beforeLinkNav . 'equipements.php?type=eclairages' ?>">Eclairages</a>
+                                </li>
                                 <li><a href="<?= $beforeLinkNav . 'equipements.php?type=perches' ?>">Perches</a></li>
-                                <li><a href="<?= $beforeLinkNav . 'equipements.php?type=moniteurs' ?>">Moniteurs</a></li>
-                                <li><a href="<?= $beforeLinkNav . 'equipements.php?type=objectifs-photo' ?>">Objectifs photo</a></li>
-                                <li><a href="<?= $beforeLinkNav . 'equipements.php?type=ordinateurs' ?>">Ordinateurs</a></li>
+                                <li><a href="<?= $beforeLinkNav . 'equipements.php?type=moniteurs' ?>">Moniteurs</a>
+                                </li>
+                                <li><a href="<?= $beforeLinkNav . 'equipements.php?type=objectifs-photo' ?>">Objectifs
+                                        photo</a></li>
+                                <li><a href="<?= $beforeLinkNav . 'equipements.php?type=ordinateurs' ?>">Ordinateurs</a>
+                                </li>
                                 <li><a href="<?= $beforeLinkNav . 'equipements.php?type=autres' ?>">Autres</a></li>
                             </ul>
                         </details>
-                        <div class="header__nav__menu__list__items__item__wrapper"></div>
                     </div>
                 </div>
             </div>

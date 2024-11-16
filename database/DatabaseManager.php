@@ -33,7 +33,7 @@ class DatabaseManager
     private function connect()
     {
         try {
-            $this->pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
+            $this->pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . 'charset=utf8mb4', DB_USER, DB_PASSWORD);
         } catch (PDOException $e) {
             die("Erreur de connexion à la base de données ! " . $e->getMessage());
         }

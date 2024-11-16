@@ -15,7 +15,7 @@ function openNav() {
 openNav();
 
 /*
-Animate menu with GSAP
+Animate links with GSAP
 */
 function animateOpenNav() {
     tl.to(".header__nav", 0.2, {

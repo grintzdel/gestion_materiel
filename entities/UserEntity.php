@@ -4,9 +4,9 @@ namespace entity;
 
 use \DatabaseManager;
 
-class userEntity
+class UserEntity
 {
-    private $databaseManager;
+    private DatabaseManager $databaseManager;
     public ?array $loggedInUser = null;
 
     public function __construct(

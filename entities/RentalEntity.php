@@ -6,7 +6,7 @@ use \DatabaseManager;
 
 class RentalEntity
 {
-    private $databaseManager;
+    private DatabaseManager $databaseManager;
 
     public function __construct(
         DatabaseManager $databaseManager
