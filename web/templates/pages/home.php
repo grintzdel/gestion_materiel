@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
-<?php require_once 'src/templates/partials/head.php'; ?>
+<?php require_once 'templates/partials/head.php'; ?>
 <body>
-<?php require_once 'src/templates/partials/header.php'; ?>
+<?php require_once 'templates/partials/header.php'; ?>
 <main>
     <section class="hero">
         <div class="hero__heading">
@@ -10,8 +10,8 @@
             <h1 class="hero__heading--highlight">matos</h1>
             <h1 class="hero__heading--base">by</h1>
             <picture>
-                <source srcset="src/public/svg/logo__mmi__desktop.svg" media="(min-width: 768px)">
-                <img src="src/public/svg/logo_mmi__mobile.svg" alt="Logo MMI Chambéry">
+                <source srcset="views/svg/logo__mmi__desktop.svg" media="(min-width: 768px)">
+                <img src="views/svg/logo_mmi__mobile.svg" alt="Logo MMI Chambéry">
             </picture>
         </div>
         <div class="hero__card">
@@ -25,6 +25,6 @@
     </section>
 </main>
 
-<?php require_once 'src/templates/partials/footer.php'; ?>
+<?php require_once 'templates/partials/footer.php'; ?>
 </body>
 </html>

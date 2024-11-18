@@ -1,8 +1,8 @@
 <?php
 
-namespace entity;
+namespace src\Entity;
 
-use \DatabaseManager;
+use src\Database\DatabaseManager;
 
 class EquipmentEntity
 {

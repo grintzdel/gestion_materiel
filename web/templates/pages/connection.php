@@ -1,13 +1,16 @@
 <?php
+
+// todo : remove PHP
 session_start();
 
-use entity\UserEntity;
+use src\Database\DatabaseManager;
+use src\Entity\UserEntity;
 
 $isError = false;
 
 function redirectPage(): void
 {
-    header("Location: src/templates/pages/profil.php");
+    header("Location: templates/pages/profil.php");
     exit();
 }
 
@@ -54,7 +57,7 @@ if (isset($_SESSION['user_info'])) {
 
 <main>
     <h1 class="title">Connexion</h1>
-    <form action="src/templates/pages/connction.php" method="post">
+    <form action="templates/pages/connction.php" method="post">
         <label for="username">Nom d'utilisateur</label>
         <input type="text" name="username" id="username" placeholder="Nom d'utilisateur" required>
 

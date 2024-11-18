@@ -4,6 +4,6 @@ class UserController
 {
     public function profile()
     {
-        require_once 'src/templates/pages/profil.php';
+        require_once 'templates/pages/profil.php';
     }
 }

@@ -14,7 +14,7 @@ function handleRequest($routes): void
 
     if (array_key_exists($uri, $routes)) {
         list($controller, $method) = explode('@', $routes[$uri]);
-        require_once "src/app/Controllers/$controller.php";
+        require_once __DIR__ . "/../src/Controllers/$controller.php";
         $controllerInstance = new $controller();
         $controllerInstance->$method();
     } else {

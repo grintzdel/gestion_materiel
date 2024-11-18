@@ -1,9 +1,11 @@
 <?php
 
-use entity\UserEntity;
+use src\Database\DatabaseManager;
+use src\Entity\UserEntity;
 
 /**
  * @param UserEntity $user
+ * @param string $username
  * @param string $password
  * @return void
  *

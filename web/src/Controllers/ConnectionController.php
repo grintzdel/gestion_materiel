@@ -8,9 +8,7 @@ class ConnectionController
 {
     public function connection()
     {
-        //require_once 'src/templates/pages/connection.php';
-
-
+        // todo - implement the connection logic
         $isError = false;
 
         if (isset($_SESSION['user_info'])) {

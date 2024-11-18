@@ -1,5 +1,6 @@
 <?php
 
+namespace src\Database;
 require_once 'config.php';
 
 class DatabaseManager
