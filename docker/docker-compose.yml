@@ -17,6 +17,8 @@ services:
 
   mariadb:
     image: mariadb
+    ports:
+      - "3307:3306"
     restart: always
     volumes:
       - ../mariadb-data/:/var/lib/mysql/

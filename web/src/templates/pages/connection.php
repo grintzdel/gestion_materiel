@@ -7,7 +7,7 @@ $isError = false;
 
 function redirectPage(): void
 {
-    header("Location: profil.php");
+    header("Location: src/templates/pages/profil.php");
     exit();
 }
 
@@ -19,7 +19,6 @@ function loginBtn(UserEntity $user): void
     if (isset($_SESSION['user_info'])) {
         redirectPage();
     } else {
-        //var_dump($_POST);
         connection(
             $user,
             $_POST['username'],
@@ -36,9 +35,9 @@ function loginBtn(UserEntity $user): void
 
 /* Condition For Login */
 if (isset($_POST['username']) && isset($_POST['password'])) {
-    require_once '../../../database/DatabaseManager.php';
-    require_once '../../../controllers/userController.php';
-    require_once '../../../entities/UserEntity.php';
+    require_once 'src/app/Database/DatabaseManager.php';
+    require_once 'src/app/Controllers/userController.php';
+    require_once 'src/app/Entities/UserEntity.php';
 
     $database = DatabaseManager::getInstance();
     $user = new UserEntity($database);
@@ -55,7 +54,7 @@ if (isset($_SESSION['user_info'])) {
 
 <main>
     <h1 class="title">Connexion</h1>
-    <form action="connexion.php" method="post">
+    <form action="src/templates/pages/connction.php" method="post">
         <label for="username">Nom d'utilisateur</label>
         <input type="text" name="username" id="username" placeholder="Nom d'utilisateur" required>
 

@@ -28,7 +28,7 @@ class DatabaseManager
     /**
      * @return void
      *
-     * Function for connect to the database
+     * Function for connect to the Database
      */
     private function connect()
     {
@@ -46,7 +46,7 @@ class DatabaseManager
      *
      * @return array
      *
-     * Function for create a request to the database and return the result
+     * Function for create a request to the Database and return the result
      */
     public function select(
         string $request,
@@ -68,7 +68,7 @@ class DatabaseManager
      * @param array $param
      * @return void
      *
-     * Function for insert data in the database
+     * Function for insert data in the Database
      */
     public function insert(
         string $request,
