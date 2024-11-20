@@ -2,7 +2,7 @@
 
 $routes = [
     '/' => 'HomeController@index',
-    '/connexion' => 'ConnectionController@connection',
+    '/connexion' => 'UserController@connexion',
     //'/registration' => 'UserController@registration',
     //'/edition' => 'UserController@edition',
     '/profil' => 'UserController@profile',

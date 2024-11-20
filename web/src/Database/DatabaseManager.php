@@ -1,6 +1,8 @@
 <?php
 
-namespace src\Database;
+namespace App\Database;
+use PDO;
+
 require_once 'config.php';
 
 class DatabaseManager
