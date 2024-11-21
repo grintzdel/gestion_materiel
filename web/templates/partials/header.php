@@ -21,7 +21,7 @@
                         <details class="header__nav__menu__details" open>
                             <summary class="header__nav__menu__details__heading">
                                 <a class="header__nav__menu__details__heading__title">Equipements</a>
-                                <img src="/views/svg/open-close.svg" alt="Toogle menu">
+                                <img src="/views/svg/open-close--white.svg" alt="Toogle menu">
                             </summary>
                             <ul class="header__nav__menu__details__list">
                                 <li><a href="/">Tout</a></li>

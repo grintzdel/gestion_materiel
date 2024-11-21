@@ -4,7 +4,7 @@
 <body>
 <?php require_once __DIR__ . '/../partials/header.php'; ?>
 
-<main>
+<main class="main">
     <?php if (isset($content)) echo $content; ?>
 </main>
 

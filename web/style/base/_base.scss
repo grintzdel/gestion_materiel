@@ -8,12 +8,13 @@
 }
 
 html {
-  font-size: 62.5%
+  font-size: 62.5%;
 }
 
 body {
   font-family: $font-family-primary;
   font-size: 1.6rem;
+  background: $color-bg-primary;
 }
 
 a {
@@ -21,7 +22,6 @@ a {
   outline: none;
   text-decoration: none;
 }
-
 
 // Buttons
 button {
@@ -32,10 +32,16 @@ button {
   color: inherit;
 }
 
-.button--primary {
+.main {
+  padding: 0 clamp(3rem, 8vw, 16rem);
+}
 
+.page-title {
+  font-size: 3.5rem;
+}
+
+.button--primary {
 }
 
 .button--secondary {
-
 }
