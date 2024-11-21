@@ -20,6 +20,7 @@ class UserController
     {
         if ($_SESSION['user_info']) {
             header('Location: /profil');
+            exit;
         }
 
         $username = htmlspecialchars(filter_input(INPUT_POST, 'username'));
@@ -59,5 +60,54 @@ class UserController
     {
         session_destroy();
         header('Location: /');
+    }
+
+    public function addKey()
+    {
+        if ($_SESSION['user_info']['clef']) {
+            header('Location: /profil');
+            exit;
+        }
+
+        $key = htmlspecialchars(filter_input(INPUT_POST, 'key'));
+        $code = htmlspecialchars(filter_input(INPUT_POST, 'code'));
+
+        if (!empty($key) && !empty($code)) {
+            $db = DatabaseManager::getInstance();
+            $keyResult = $db->select(
+                "SELECT * FROM clef WHERE clef = :clef AND code = :code AND id_user IS NULL",
+                [
+                    "clef" => $key,
+                    "code" => $code,
+                ]
+            );
+
+            if (!empty($keyResult)) {
+                $db->insert(
+                    "UPDATE User SET clef = :clef WHERE id = :id",
+                    [
+                        "clef" => $key,
+                        "id"   => $_SESSION['user_info']['id'],
+                    ]
+                );
+                $db->insert(
+                    "UPDATE clef SET id_user = :id_user WHERE clef = :clef",
+                    [
+                        "id_user" => $_SESSION['user_info']['id'],
+                        "clef" => $key,
+                    ]
+                );
+
+                $_SESSION['user_info']['clef'] = $keyResult[0]['clef'];
+
+                header('Location: /profil');
+            } else {
+                $error = "clef ou code incorrect, ou déja utilisé";
+            }
+        }
+
+        Template::renderTemplate('templates/pages/user/clef.php', [
+            'error' => $error ?? null,
+        ]);
     }
 }

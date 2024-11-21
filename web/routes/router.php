@@ -7,6 +7,7 @@ $routes = [
     //'/edition' => 'UserController@edition',
     '/profil' => 'UserController@profile',
     '/deconnexion' => 'UserController@logout',
+    '/user/addClef' => 'UserController@addKey',
 ];
 
 function handleRequest($routes): void
