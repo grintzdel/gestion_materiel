@@ -2,12 +2,13 @@
 
 $routes = [
     '/' => 'HomeController@index',
+
     '/connexion' => 'UserController@connexion',
-    //'/registration' => 'UserController@registration',
-    //'/edition' => 'UserController@edition',
     '/profil' => 'UserController@profile',
     '/deconnexion' => 'UserController@logout',
     '/user/addClef' => 'UserController@addKey',
+
+    '/equipment' => 'EquipmentController@equipmentList',
 ];
 
 function handleRequest($routes): void
