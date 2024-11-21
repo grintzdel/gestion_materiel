@@ -29,7 +29,7 @@ class UserController
         if (!empty($username) && !empty($password)) {
             $db = DatabaseManager::getInstance();
             $user = $db->select(
-                "SELECT * FROM User WHERE username = :username AND password = :password",
+                "SELECT * FROM user WHERE username = :username AND password = :password",
                 [
                     "username" => $username,
                     "password" => $password,
@@ -84,17 +84,17 @@ class UserController
 
             if (!empty($keyResult)) {
                 $db->insert(
-                    "UPDATE User SET clef = :clef WHERE id = :id",
+                    "UPDATE user SET id_clef = :id_clef WHERE id = :id",
                     [
-                        "clef" => $key,
+                        "id_clef" => $keyResult[0]['id_clef'],
                         "id"   => $_SESSION['user_info']['id'],
                     ]
                 );
                 $db->insert(
-                    "UPDATE clef SET id_user = :id_user WHERE clef = :clef",
+                    "UPDATE clef SET id_user = :id_user WHERE id_clef = :id_clef",
                     [
                         "id_user" => $_SESSION['user_info']['id'],
-                        "clef" => $key,
+                        "id_clef" => $keyResult[0]['id_clef'],
                     ]
                 );
 
