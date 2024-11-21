@@ -7,14 +7,20 @@ class UserController
 {
     public function profile()
     {
-        require_once 'templates/pages/user/profil.php';
+        if (!$_SESSION['user_info']) {
+            header('Location: /connexion');
+        }
+
+        Template::renderTemplate('templates/pages/user/profil.php', [
+            'user' => $_SESSION['user_info'],
+        ]);
     }
 
     public function connexion()
     {
-//        if ($_SESSION['user_info']) {
-//            header('Location: /profil');
-//        }
+        if ($_SESSION['user_info']) {
+            header('Location: /profil');
+        }
 
         $username = htmlspecialchars(filter_input(INPUT_POST, 'username'));
         $password = htmlspecialchars(filter_input(INPUT_POST, 'password'));
@@ -47,5 +53,11 @@ class UserController
             'username' => $username,
             'error'    => $error ?? null,
         ]);
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        header('Location: /');
     }
 }

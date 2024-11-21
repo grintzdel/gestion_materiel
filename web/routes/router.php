@@ -6,6 +6,7 @@ $routes = [
     //'/registration' => 'UserController@registration',
     //'/edition' => 'UserController@edition',
     '/profil' => 'UserController@profile',
+    '/deconnexion' => 'UserController@logout',
 ];
 
 function handleRequest($routes): void
