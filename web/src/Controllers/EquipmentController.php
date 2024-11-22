@@ -26,7 +26,7 @@ class EquipmentController
         $categories = $data['categories'] ?? [];
 
         if (empty($categories)) {
-            echo json_encode([]);
+            echo json_encode($materials = EquipmentRepository::getAll());
             return;
         }
 
