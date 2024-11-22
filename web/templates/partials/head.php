@@ -5,4 +5,5 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/views/style.css">
     <title>MMMI Chambéry</title>
+    <?php if (isset($link)) echo $link; ?>
 </head>

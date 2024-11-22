@@ -8,7 +8,8 @@ $routes = [
     '/deconnexion' => 'UserController@logout',
     '/user/addClef' => 'UserController@addKey',
 
-    '/equipment' => 'EquipmentController@equipmentList',
+    '/equipment' => 'EquipmentController@equipmentListAndTemplate',
+    '/equipment/find' => 'EquipmentController@findEquipment',
 ];
 
 function handleRequest($routes): void

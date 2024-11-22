@@ -1,5 +1,8 @@
 <?php
 ob_start();
+/**
+ * @var string $error Error message if the key is incorrect
+ */
 ?>
 
     <h1 class="title">Ajouter une clef</h1>

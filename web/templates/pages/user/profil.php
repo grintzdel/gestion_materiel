@@ -1,5 +1,8 @@
 <?php
 ob_start();
+/**
+ * @var array $user Session user data : id, email, firstname, lastname, role, clef
+ */
 ?>
 
 <h1 class="title">Voila test info mon reuf</h1>

@@ -1,5 +1,9 @@
 <?php
 ob_start();
+/**
+ * @var string $username Username write in the form
+ * @var string $error    Error message if the username or password is incorrect
+ */
 ?>
 
 <h1 class="title">Connexion</h1>

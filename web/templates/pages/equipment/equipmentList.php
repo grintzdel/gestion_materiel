@@ -1,6 +1,17 @@
 <?php
 ob_start();
 ?>
+<script src="/scripts/ajax/equipment/filter.js"></script>
+<?php
+$link = ob_get_clean();
+
+
+ob_start();
+/**
+ * @var array $categories List of categories : id, name
+ * @var array $materials  List of materials  : id, name, description, available, require_key, categories(merged with ',')
+ */
+?>
 
 <h1 class="page-title">Equipement</h1>
 <section class="archive">
@@ -14,7 +25,12 @@ ob_start();
             </summary>
             <div class="filter__content">
                 <ul class="filter__list">
-                    <!-- TODO: Add checkbox here -->
+                    <?php foreach ($categories as $category): ?>
+                        <li class="filter__list__item">
+                            <input type="checkbox" id="category-<?= $category['id_categorie'] ?>" name="category-<?= $category['id_categorie'] ?>">
+                            <label for="category-<?= $category['id_categorie'] ?>"><?= $category['name'] ?></label>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </details>
@@ -34,16 +50,28 @@ ob_start();
     </div>
 
     <div class="archive__collection">
-
+        <table>
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Quantité</th>
+                <th>Clé</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($materials as $material): ?>
+                <tr>
+                    <td><?= $material['name'] ?></td>
+                    <td><?= $material['description'] ?></td>
+                    <td><?= $material['available'] ?></td>
+                    <td><?= $material['require_key'] ? 'Oui' : 'Non' ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 </section>
-
-
-
-
-
-
-
 
 
 <?php
