@@ -54,4 +54,23 @@ class EquipmentController
         // Retourner les résultats sous forme de JSON
         echo json_encode(array_values($results));
     }
+
+    public function showOne()
+    {
+        $id = max(1, intval($_GET['id'])) ?? null;
+        if ($id === null) {
+            header('Location: /equipment');
+            return;
+        }
+
+        $equipment = EquipmentRepository::getOne($id);
+        if ($equipment === null) {
+            header('Location: /equipment');
+            return;
+        }
+
+        Template::renderTemplate('templates/pages/equipment/showEquipment.php', [
+            'equipment' => $equipment,
+        ]);
+    }
 }

@@ -3,13 +3,14 @@
 $routes = [
     '/' => 'HomeController@index',
 
-    '/connexion' => 'UserController@connexion',
-    '/profil' => 'UserController@profile',
-    '/deconnexion' => 'UserController@logout',
+    '/connexion'    => 'UserController@connexion',
+    '/profil'       => 'UserController@profile',
+    '/deconnexion'  => 'UserController@logout',
     '/user/addClef' => 'UserController@addKey',
 
-    '/equipment' => 'EquipmentController@equipmentListAndTemplate',
-    '/equipment/find' => 'EquipmentController@findEquipment',
+    '/equipment'         => 'EquipmentController@equipmentListAndTemplate',
+    '/equipment/find'    => 'EquipmentController@findEquipment',
+    '/equipment/showOne' => 'EquipmentController@showOne',
 ];
 
 function handleRequest($routes): void

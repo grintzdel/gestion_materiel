@@ -59,4 +59,28 @@ class EquipmentRepository
 
         return $db->select($query);
     }
+
+    public static function getOne($id)
+    {
+        $db = DatabaseManager::getInstance();
+
+        $id = max(1, intval($id));
+
+        $query = "
+                SELECT 
+                    e.id_equipment,
+                    e.name,
+                    e.description,
+                    e.available,
+                    e.require_key,
+                    GROUP_CONCAT(c.name SEPARATOR ',') as categories
+                FROM equipment e
+                LEFT JOIN equipement_categorie ec ON ec.id_equipment = e.id_equipment 
+                LEFT JOIN categorie c ON c.id_categorie = ec.id_categorie
+                WHERE e.id_equipment = :id
+                GROUP BY e.id_equipment
+            ";
+
+        return $db->select($query, ['id' => $id])[0] ?? null;
+    }
 }
