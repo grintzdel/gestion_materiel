@@ -11,6 +11,10 @@ $routes = [
     '/equipment'         => 'EquipmentController@equipmentListAndTemplate',
     '/equipment/find'    => 'EquipmentController@findEquipment',
     '/equipment/showOne' => 'EquipmentController@showOne',
+
+    '/admin/equipment/add'  => 'AdminController@addEquipment',
+    '/admin/equipment/edit' => 'AdminController@editEquipment',
+
 ];
 
 function handleRequest($routes): void
