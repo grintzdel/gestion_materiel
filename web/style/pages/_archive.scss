@@ -4,6 +4,7 @@
   gap: 3.5rem;
   margin-top: 3rem;
 
+  /* Filters */
   &__filters {
     display: flex;
     flex-direction: column;
@@ -12,7 +13,7 @@
     .filter {
       background-color: $color-bg-primary;
       padding: 2.4rem 3.1rem;
-      border: 1px solid $color-bg-secondary;
+      border: 1px solid $color-bg-tertiary;
       cursor: pointer;
       overflow: hidden;
 
@@ -39,23 +40,115 @@
       }
 
       &__content {
-        padding: 1rem;
+        margin-top: 2rem;
       }
 
       &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
         list-style: none;
         padding: 0;
+
+        &__item {
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+
+          input[type="checkbox"] {
+            background-color: $color-bg-primary;
+            border: 1px solid $color-bg-secondary;
+            position: relative;
+            height: 2.6rem;
+            width: 2.6rem;
+            appearance: none;
+
+            &:checked {
+              background-color: $color-bg-secondary;
+              border: none;
+
+              &::before {
+                content: "✓";
+                color: #fff;
+                font-size: 16px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -55%);
+              }
+            }
+          }
+
+          input[type="radio"] {
+            border: 1px solid $color-bg-secondary;
+            height: 2.6rem;
+            width: 2.6rem;
+            border-radius: 50%;
+            appearance: none;
+
+            &:checked {
+              background-color: $color-bg-secondary;
+              border: none;
+            }
+          }
+
+          label {
+            font-size: 1.4rem;
+          }
+
+          span {
+            color: $color-bg-secondary;
+          }
+        }
       }
     }
   }
 
+  /* Collection */
   &__collection {
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14.75rem, 1fr));
+    gap: 2rem;
+    justify-content: center;
+
+    .equipment {
+      border-radius: 1rem;
+      background-color: #ffffff;
+
+      &__image {
+        display: flex;
+        justify-content: center;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      &__content {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(2.6rem, 1vw, 4.5rem);
+        align-items: center;
+        padding: clamp(1.5rem, 4vw, 3.5rem);
+
+        &__title {
+          font-size: clamp(1.2rem, 1vw, 1.6rem);
+          font-weight: 600;
+        }
+      }
+    }
   }
 }
 
+/* Responsive */
 @include min($tablet) {
   .archive {
-    grid-template-columns: 310px 1fr;
+    grid-template-columns: 31rem 1fr;
+
+    &__collection {
+      grid-template-columns: repeat(auto-fill, minmax(25rem, 2fr));
+      gap: 2rem;
+    }
   }
 }

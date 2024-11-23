@@ -23,7 +23,15 @@ a {
   text-decoration: none;
 }
 
-// Buttons
+.main {
+  padding: 10rem clamp(3rem, 8vw, 16rem);
+}
+
+.page-title {
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
 button {
   background: none;
   border: none;
@@ -32,16 +40,19 @@ button {
   color: inherit;
 }
 
-.main {
-  padding: 0 clamp(3rem, 8vw, 16rem);
-}
-
-.page-title {
-  font-size: 3.5rem;
+.button {
+  padding: clamp(0.75rem, 1vw, 1.3rem) clamp(1.9rem, 5vw, 7.1rem);
+  border-radius: 1rem;
+  max-width: fit-content;
+  font-size: 1.4rem;
 }
 
 .button--primary {
+  background-color: $color-bg-secondary;
+  border: none;
 }
 
 .button--secondary {
+  background-color: $color-bg-primary;
+  border: 1px solid $color-bg-secondary;
 }

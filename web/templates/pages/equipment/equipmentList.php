@@ -13,6 +13,15 @@ ob_start();
  */
 ?>
 
+        <?php /* foreach ($materials as $material): ?>
+                        <tr>
+                            <td><?= $material['name'] ?></td>
+                            <td><?= $material['description'] ?></td>
+                            <td><?= $material['available'] ?></td>
+                            <td><?= $material['require_key'] ? 'Oui' : 'Non' ?></td>
+                        </tr>
+                    <?php endforeach; */?> 
+
 <h1 class="page-title">Equipement</h1>
 <section class="archive">
     <div class="archive__filters">
@@ -34,7 +43,7 @@ ob_start();
                 </ul>
             </div>
         </details>
-
+        
         <!-- Filter 2 : Disponibilités -->
         <details class="filter">
             <summary class="filter__header">
@@ -45,7 +54,7 @@ ob_start();
                 <ul class="filter__list">
                     <li class="filter__list__item">
                         <input type="radio" id="availability-all" name="availability" checked>
-                        <label for="availability-all">Tous</label>
+                        <label for="availability-all">Tout</label>
                     </li>
                     <li class="filter__list__item">
                         <input type="radio" id="availability-true" name="availability">
@@ -60,27 +69,62 @@ ob_start();
         </details>
     </div>
 
+    <!-- Collection -->
     <div class="archive__collection">
-        <table>
-            <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Quantité</th>
-                <th>Clé</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($materials as $material): ?>
-                <tr>
-                    <td><?= $material['name'] ?></td>
-                    <td><?= $material['description'] ?></td>
-                    <td><?= $material['available'] ?></td>
-                    <td><?= $material['require_key'] ? 'Oui' : 'Non' ?></td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
+        <div class="equipment">
+            <div class="equipment__image">
+            <img src="../../../views/image.png" alt="">
+            </div>
+            <div class="equipment__content">
+                <h2 class="equipment__content__title">Canon M50 + EF IS STM 24-70 f/3.5-5.6+ 2 batteries</h2>
+                <a href="#" class="button button--primary">Disponible</a>
+            </div>
+        </div>
+        <div class="equipment">
+            <div class="equipment__image">
+            <img src="../../../views/image.png" alt="">
+            </div>
+            <div class="equipment__content">
+                    <h2 class="equipment__content__title">Canon M50 + EF IS STM 24-70 f/3.5-5.6+ 2 batteries</h2>
+                    <a href="#" class="button button--secondary">Indisponible</a>
+                </div>
+        </div>
+        <div class="equipment">
+            <div class="equipment__image">
+            <img src="../../../views/image.png" alt="">
+                </div>
+            <div class="equipment__content">
+                    <h2 class="equipment__content__title">Canon M50 + EF IS STM 24-70 f/3.5-5.6+ 2 batteries</h2>
+                    <a href="#" class="button button--primary">Disponible</a>
+                </div>
+        </div>
+        <div class="equipment">
+            <div class="equipment__image">
+            <img src="../../../views/image.png" alt="">
+                </div>
+            <div class="equipment__content">
+                    <h2 class="equipment__content__title">Canon M50 + EF IS STM 24-70 f/3.5-5.6+ 2 batteries</h2>
+                    <a href="#" class="button button--secondary">Indisponible</a>
+                </div>
+        </div>
+        <div class="equipment">
+            <div class="equipment__image">
+            <img src="../../../views/image.png" alt="">
+                </div>
+            <div class="equipment__content">
+                    <h2 class="equipment__content__title">Canon M50 + EF IS STM 24-70 f/3.5-5.6+ 2 batteries</h2>
+                    <a href="#" class="button button--secondary">Indisponible</a>
+                </div>
+        </div>
+        <div class="equipment">
+            <div class="equipment__image">
+            <img src="../../../views/image.png" alt="">
+                </div>
+            <div class="equipment__content">
+                    <h2 class="equipment__content__title">Canon M50 + EF IS STM 24-70 f/3.5-5.6+ 2 batteries</h2>
+                    <a href="#" class="button button--secondary">Indisponible</a>
+                </div>
+        </div>
     </div>
 </section>
 
