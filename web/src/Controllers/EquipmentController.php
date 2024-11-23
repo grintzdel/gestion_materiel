@@ -26,17 +26,32 @@ class EquipmentController
         $categories = $data['categories'] ?? [];
 
         if (empty($categories)) {
-            echo json_encode($materials = EquipmentRepository::getAll());
-            return;
+            $results = EquipmentRepository::getAll();
+        } else {
+            // Nettoyer les catégories
+            $categories = array_map('htmlspecialchars', $categories);
+
+            // Appeler le repository pour récupérer les équipements correspondants
+            $results = EquipmentRepository::getEquipmentWithCategoriesId($categories);
         }
 
-        // Nettoyer les catégories
-        $categories = array_map('htmlspecialchars', $categories);
 
-        // Appeler le repository pour récupérer les équipements correspondants
-        $results = EquipmentRepository::getEquipmentWithCategoriesId($categories);
+        switch ($data['availability']) {
+            case 'true':
+                $results = array_filter($results, function ($equipment) {
+                    return $equipment['available'] >= 1;
+                });
+                break;
+            case 'false':
+                $results = array_filter($results, function ($equipment) {
+                    return $equipment['available'] == 0;
+                });
+                break;
+            default:
+                break;
+        }
 
         // Retourner les résultats sous forme de JSON
-        echo json_encode($results);
+        echo json_encode(array_values($results));
     }
 }

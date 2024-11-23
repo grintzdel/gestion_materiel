@@ -43,7 +43,18 @@ ob_start();
             </summary>
             <div class="filter__content">
                 <ul class="filter__list">
-                    <!-- TODO: Add checkbox here -->
+                    <li class="filter__list__item">
+                        <input type="radio" id="availability-all" name="availability" checked>
+                        <label for="availability-all">Tous</label>
+                    </li>
+                    <li class="filter__list__item">
+                        <input type="radio" id="availability-true" name="availability">
+                        <label for="availability-true">Disponible</label>
+                    </li>
+                    <li class="filter__list__item">
+                        <input type="radio" id="availability-false" name="availability">
+                        <label for="availability-false">Indisponible</label>
+                    </li>
                 </ul>
             </div>
         </details>

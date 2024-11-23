@@ -1,27 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('.filter__content').addEventListener('change', function () {
-        // Récupérer toutes les cases cochées
-        const selectedCategories = Array.from(document.querySelectorAll('.filter__list__item input:checked'))
-            .map(input => {
-                // Extraire l'ID de la catégorie (en retirant "category-" du début)
-                return input.id.replace('category-', '');
-            });
+    let selectedCategories = [];
+    let selectedAvailability;
 
-        // Envoyer les IDs sélectionnés via une requête AJAX
-        fetch('/equipment/find', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ categories: selectedCategories }),
-        })
-            .then(response => response.json())
-            .then(data => {
-                generateTable(data)
+    document.querySelectorAll('.filter__content').forEach(filter => {
+        filter.addEventListener('change', function () {
+            // Récupérer toutes les cases cochées
+            selectedCategories = Array.from(document.querySelectorAll('.filter__list__item input[type="checkbox"]:checked'))  // checkbox
+                .map(input => {
+                    // Extraire l'ID de la catégorie (en retirant "category-" du début)
+                    return input.id.replace('category-', '');
+                });
+            const availabilityRadio = document.querySelector('input[name="availability"]:checked');
+            selectedAvailability = availabilityRadio ? availabilityRadio.id.replace('availability-', '') : null;
+
+            // Envoyer les IDs sélectionnés via une requête AJAX
+            fetch('/equipment/find', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    categories: selectedCategories,
+                    availability: selectedAvailability
+                }),
             })
-            .catch(error => {
-                console.error('Erreur:', error);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    generateTable(data);
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                });
+        });
     });
 });
 
