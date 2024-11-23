@@ -13,15 +13,6 @@ ob_start();
  */
 ?>
 
-        <?php /* foreach ($materials as $material): ?>
-                        <tr>
-                            <td><?= $material['name'] ?></td>
-                            <td><?= $material['description'] ?></td>
-                            <td><?= $material['available'] ?></td>
-                            <td><?= $material['require_key'] ? 'Oui' : 'Non' ?></td>
-                        </tr>
-                    <?php endforeach; */?> 
-
 <h1 class="page-title">Equipement</h1>
 <section class="archive">
     <div class="archive__filters">
@@ -71,60 +62,20 @@ ob_start();
 
     <!-- Collection -->
     <div class="archive__collection">
-        <div class="equipment">
-            <div class="equipment__image">
-            <img src="../../../views/image.png" alt="">
+        <?php foreach ($materials as $material): ?>
+            <div class="equipment">
+                <div class="equipment__image">
+                    <img src="<?= $material['image'] ?>" alt="<?= $material['name'] ?>">
+                </div>
+                <div class="equipment__content">
+                    <h2 class="equipment__content__title"><?= $material['name'] ?></h2>
+                    <a href="#" 
+                    class="button <?php if ($material['available'] > 0) : ?> button--primary 
+                    <?php else : ?> button--secondary <?php endif; ?>"><?php if ($material['available'] > 0) : ?> Disponible 
+                    <?php else : ?> Indisponible <?php endif; ?></a>
+                </div>
             </div>
-            <div class="equipment__content">
-                <h2 class="equipment__content__title">Canon M50 + EF IS STM 24-70 f/3.5-5.6+ 2 batteries</h2>
-                <a href="#" class="button button--primary">Disponible</a>
-            </div>
-        </div>
-        <div class="equipment">
-            <div class="equipment__image">
-            <img src="../../../views/image.png" alt="">
-            </div>
-            <div class="equipment__content">
-                    <h2 class="equipment__content__title">Canon M50 + EF IS STM 24-70 f/3.5-5.6+ 2 batteries</h2>
-                    <a href="#" class="button button--secondary">Indisponible</a>
-                </div>
-        </div>
-        <div class="equipment">
-            <div class="equipment__image">
-            <img src="../../../views/image.png" alt="">
-                </div>
-            <div class="equipment__content">
-                    <h2 class="equipment__content__title">Canon M50 + EF IS STM 24-70 f/3.5-5.6+ 2 batteries</h2>
-                    <a href="#" class="button button--primary">Disponible</a>
-                </div>
-        </div>
-        <div class="equipment">
-            <div class="equipment__image">
-            <img src="../../../views/image.png" alt="">
-                </div>
-            <div class="equipment__content">
-                    <h2 class="equipment__content__title">Canon M50 + EF IS STM 24-70 f/3.5-5.6+ 2 batteries</h2>
-                    <a href="#" class="button button--secondary">Indisponible</a>
-                </div>
-        </div>
-        <div class="equipment">
-            <div class="equipment__image">
-            <img src="../../../views/image.png" alt="">
-                </div>
-            <div class="equipment__content">
-                    <h2 class="equipment__content__title">Canon M50 + EF IS STM 24-70 f/3.5-5.6+ 2 batteries</h2>
-                    <a href="#" class="button button--secondary">Indisponible</a>
-                </div>
-        </div>
-        <div class="equipment">
-            <div class="equipment__image">
-            <img src="../../../views/image.png" alt="">
-                </div>
-            <div class="equipment__content">
-                    <h2 class="equipment__content__title">Canon M50 + EF IS STM 24-70 f/3.5-5.6+ 2 batteries</h2>
-                    <a href="#" class="button button--secondary">Indisponible</a>
-                </div>
-        </div>
+        <?php endforeach; ?> 
     </div>
 </section>
 
