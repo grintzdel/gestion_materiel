@@ -48,6 +48,7 @@ class EquipmentRepository
                     e.description,
                     e.available,
                     e.require_key,
+                    CONCAT('/views/img/', e.image) AS image,
                     GROUP_CONCAT(c.name SEPARATOR ',') as categories
                 FROM equipment e
                 LEFT JOIN equipement_categorie ec ON ec.id_equipment = e.id_equipment 
@@ -73,6 +74,7 @@ class EquipmentRepository
                     e.description,
                     e.available,
                     e.require_key,
+                    CONCAT('/views/img/', e.image) AS image,
                     GROUP_CONCAT(c.name SEPARATOR ',') as categories
                 FROM equipment e
                 LEFT JOIN equipement_categorie ec ON ec.id_equipment = e.id_equipment 
