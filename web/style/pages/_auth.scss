@@ -1,0 +1,97 @@
+.auth {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  background-color: $color-bg-secondary;
+  padding: clamp(3rem, 8vw, 10rem);
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__img {
+    display: none;
+  }
+
+  &__form {
+    padding: clamp(3rem, 3vw, 5rem) clamp(1.5rem, 3vw, 3rem);
+    background-color: $color-bg-primary;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4rem;
+    min-width: 31.5rem;
+
+    &__title {
+      font-size: clamp(2rem, 3vw, 3.5rem);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: flex-start;
+
+      label {
+        font-size: 1.6rem;
+      }
+
+      input {
+        padding: 1.2rem;
+        background-color: $color-bg-secondary;
+        border: none;
+        width: 100%;
+        outline: none;
+
+        &::placeholder {
+          font-size: 1.2rem;
+          color: $font-color-primary;
+        }
+
+        &:focus {
+          border: 1px solid $color-bg-secondary;
+          background-color: $color-bg-primary;
+        }
+
+        &:not(:focus) {
+          border: 1px solid $color-bg-secondary !important;
+          background-color: $color-bg-secondary !important;
+        }
+      }
+
+      input:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+
+      input:last-child {
+        align-self: center;
+      }
+    }
+  }
+}
+
+@include min($tablet) {
+  .auth {
+    &__img {
+      display: block;
+      height: auto;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+      }
+    }
+
+    &__form {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}

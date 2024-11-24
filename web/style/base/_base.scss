@@ -7,6 +7,7 @@
   padding: 0;
 }
 
+
 html {
   font-size: 62.5%;
 }
@@ -41,7 +42,7 @@ button {
 }
 
 .button {
-  padding: clamp(0.75rem, 1vw, 1.3rem) clamp(1.9rem, 5vw, 7.1rem);
+  padding: clamp(0.75rem, 1vw, 1.3rem) clamp(1.9rem, 5vw, 7.1rem) !important;
   border-radius: 1rem;
   max-width: fit-content;
   font-size: 1.4rem;

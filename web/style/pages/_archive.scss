@@ -144,11 +144,15 @@
 /* Responsive */
 @include min($tablet) {
   .archive {
-    grid-template-columns: 31rem 1fr;
-
     &__collection {
       grid-template-columns: repeat(auto-fill, minmax(25rem, 2fr));
       gap: 2rem;
     }
+  }
+}
+
+@include min($desktop) {
+  .archive {
+    grid-template-columns: 31rem 1fr;
   }
 }
