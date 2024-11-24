@@ -48,13 +48,13 @@ composer install
 - si l'on veut ajouter du style supplémentaire, il faut utiliser du SCSS et faire les commandes suivantes dans le terminal :
 on se postionne au niveau du dossier style (dans le terminal)
 ```
-cd web/src/style
+cd web/style
 ```
 puis lancer la commande suivante :
 ```
-sass --watch style.scss:../public/style.css --style compressed
+sass --watch style.scss:../views/style.css --style compressed
 ```
 ou si l'on veut rester à la racine du projet, faire :
 ```
-sass --watch web/src/style/style.scss:../public/style.css --style compressed
+sass --watch web/style/style.scss:../views/style.css --style compressed
 ```
