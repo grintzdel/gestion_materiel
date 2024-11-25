@@ -3,9 +3,30 @@
 use App\Database\DatabaseManager;
 use App\Helpers\Template;
 use App\Repository\CategorieRepository;
+use App\Repository\EquipmentRepository;
+use App\Validator\Equipment;
 
 class AdminController
 {
+    public function listEquipment()
+    {
+        if (!$_SESSION['user_info']) {
+            header('Location: /connexion');
+        }
+        if ($_SESSION['user_info']['role'] !== 'admin') {
+            header('Location: /profil');
+        }
+
+        $materials = EquipmentRepository::getAll();
+        $categories = CategorieRepository::getAllCategorie();
+
+        Template::renderTemplate('templates/pages/admin/listEquipment.php', [
+            'categories' => $categories,
+            'materials' => $materials,
+        ]);
+    }
+
+
     public function addEquipment()
     {
         if (!$_SESSION['user_info']) {
@@ -18,82 +39,129 @@ class AdminController
 
         $name             = htmlspecialchars(filter_input(INPUT_POST, 'name'));
         $description      = htmlspecialchars(filter_input(INPUT_POST, 'description'));
+        $available        = htmlspecialchars(filter_input(INPUT_POST, 'available')) ?? 0;
+        $total            = htmlspecialchars(filter_input(INPUT_POST, 'total')) ?? 0;
         $key              = htmlspecialchars(filter_input(INPUT_POST, 'key'));
         $image            = $_FILES['image'] ?? null;
         $categoriesSelect = $_POST['category'] ?? null;
 
-        if (!empty($name) && !empty($description) && !empty($key)) {
-            if (strlen($name) > 255) {
-                $error = "Le nom de l'équipement est trop long";
-            }
-            $key = $key === 'yes' ? 1 : 0;
-            if ($image['size'] > 10*1024*1024) {
-                $error = "L'image est trop lourde ! (10Mo max)";
-            }
+        if (!empty($name) && !empty($description) && !empty($total) && !empty($key)) {
+            try {
+                Equipment::form(false, [
+                    'name' => $name,
+                    'description' => $description,
+                    'available' => $available,
+                    'total' => $total,
+                    'key' => $key,
+                    'image' => $image,
+                    'categoriesSelect' => $categoriesSelect,
+                ]);
 
-
-            if (empty($error)) {
-                try {
-                    // Insertion equipment
-                    $db = DatabaseManager::getInstance();
-                    $db->insert(
-                        "INSERT INTO equipment (name, description, available, require_key) VALUES (:name, :description, :available, :key)",
-                        [
-                            "name" => $name,
-                            "description" => $description,
-                            "available" => 0,
-                            "key" => $key,
-                        ]
-                    );
-                    $id_equipment = $db->lastInsertId();
-                    $path = __DIR__ . '/../../views/img/';
-                    $extension = strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
-
-
-                    // Upload image
-                    if (!move_uploaded_file($image['tmp_name'], $path . $id_equipment . '.' . $extension)) {
-                        throw new Exception("Erreur lors de l'upload de l'image");
-                    }
-
-                    // Insertion image
-                    $db->insert(
-                        "UPDATE equipment SET image = :image WHERE id_equipment = :id_equipment",
-                        [
-                            "image"   => $id_equipment . '.' . $extension,
-                            "id_equipment" => $id_equipment,
-                        ]
-                    );
-
-                    // Insertion categories
-                    if ($categoriesSelect) {
-                        foreach ($categoriesSelect as $categorie) {
-                            $db->insert(
-                                "INSERT INTO equipement_categorie (id_equipment, id_categorie) VALUES (:id_equipment, :id_categorie)",
-                                [
-                                    "id_equipment" => $id_equipment,
-                                    "id_categorie" => $categorie,
-                                ]
-                            );
-                        }
-                    }
-
-
-                header('Location: /equipment');
-                } catch (Exception $e) {
-                    $error = "Erreur lors de l'ajout de l'équipement";
-                }
+                header('Location: /admin/equipment/list');
+            } catch (Exception $e) {
+                $error = $e->getMessage();
             }
         }
 
         $categories = CategorieRepository::getAllCategorie();
 
-        Template::renderTemplate('templates/pages/admin/addEquipment.php', [
+        Template::renderTemplate('templates/pages/admin/formEquipment.php', [
             'name'             => $name,
             'description'      => $description,
             'key'              => $key,
-
+            'available'        => $available,
+            'total'            => $total,
+            'categoriesSelect' => [],
+            'isEditing'        => false,
             'categories'       => $categories,
             'error'            => $error ?? null,
         ]);
+    }
+
+    public function editEquipment()
+    {
+        if (!$_SESSION['user_info']) {
+            header('Location: /connexion');
+        }
+        if ($_SESSION['user_info']['role'] !== 'admin') {
+            header('Location: /profil');
+        }
+        $error = null;
+        $id_equipment = $_GET['id_equipment'];
+
+        $equipment = EquipmentRepository::getOne($id_equipment);
+
+        if (!$equipment) {
+            header('Location: /admin/equipment/list');
+            exit;
+        }
+
+        $name             = htmlspecialchars(filter_input(INPUT_POST, 'name'));
+        $description      = htmlspecialchars(filter_input(INPUT_POST, 'description'));
+        $available        = htmlspecialchars(filter_input(INPUT_POST, 'available'));
+        $total            = htmlspecialchars(filter_input(INPUT_POST, 'total'));
+        $key              = htmlspecialchars(filter_input(INPUT_POST, 'key'));
+        $image            = $_FILES['image'] ?? null;
+        $categoriesSelect = $_POST['category'] ?? null;
+
+        if (!empty($name) && !empty($description) && !empty($total) && !empty($key)) {
+            try {
+                Equipment::form(true, [
+                    'id_equipment' => $id_equipment,
+                    'name' => $name,
+                    'description' => $description,
+                    'available' => $available,
+                    'total' => $total,
+                    'key' => $key,
+                    'image' => $image,
+                    'categoriesSelect' => $categoriesSelect,
+                ]);
+
+                header('Location: /admin/equipment/list');
+            } catch (Exception $e) {
+                $error = "Erreur lors de la modification de l'équipement : " . $e->getMessage();
+            }
+
+        }
+
+        $equipment = EquipmentRepository::getOne($id_equipment);
+
+        $name = $equipment['name'];
+        $description = $equipment['description'];
+        $key = $equipment['require_key'];
+        $available = $equipment['available'];
+        $total = $equipment['total'];
+        $categoriesSelect = explode(',', $equipment['id_categories']);
+        $categories = CategorieRepository::getAllCategorie();
+
+        Template::renderTemplate('templates/pages/admin/formEquipment.php', [
+            'id_equipment'     => $id_equipment,
+            'name'             => $name,
+            'description'      => $description,
+            'key'              => $key,
+            'categoriesSelect' => $categoriesSelect,
+            'available'        => $available,
+            'total'            => $total,
+            'isEditing'        => true,
+            'categories'       => $categories,
+            'error'            => $error ?? null,
+        ]);
+    }
+
+    public function deleteEquipment()
+    {
+        if (!$_SESSION['user_info']) {
+            header('Location: /connexion');
+            exit;
+        }
+        if ($_SESSION['user_info']['role'] !== 'admin') {
+            header('Location: /profil');
+            exit;
+        }
+        $id_equipment = $_GET['id_equipment'];
+
+        EquipmentRepository::deleteById($id_equipment);
+
+        header('Location: /admin/equipment/list');
     }
 }

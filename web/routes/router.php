@@ -14,6 +14,8 @@ $routes = [
 
     '/admin/equipment/add'  => 'AdminController@addEquipment',
     '/admin/equipment/edit' => 'AdminController@editEquipment',
+    '/admin/equipment/list' => 'AdminController@listEquipment',
+    '/admin/equipment/delete' => 'AdminController@deleteEquipment',
 
 ];
 

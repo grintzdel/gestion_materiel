@@ -23,6 +23,7 @@ class EquipmentRepository
                     e.name,
                     e.description,
                     e.available,
+                    e.total,
                     e.require_key,
                     CONCAT('/views/img/', e.image) AS image,
                     GROUP_CONCAT(c.name SEPARATOR ',') AS categories
@@ -48,6 +49,7 @@ class EquipmentRepository
                     e.name,
                     e.description,
                     e.available,
+                    e.total,
                     e.require_key,
                     CONCAT('/views/img/', e.image) AS image,
                     GROUP_CONCAT(c.name SEPARATOR ',') as categories
@@ -74,9 +76,11 @@ class EquipmentRepository
                     e.name,
                     e.description,
                     e.available,
+                    e.total,
                     e.require_key,
                     CONCAT('/views/img/', e.image) AS image,
-                    GROUP_CONCAT(c.name SEPARATOR ',') as categories
+                    GROUP_CONCAT(c.name SEPARATOR ',') as categories,
+                    GROUP_CONCAT(ec.id_categorie SEPARATOR ',') as id_categories
                 FROM equipment e
                 LEFT JOIN equipement_categorie ec ON ec.id_equipment = e.id_equipment 
                 LEFT JOIN categorie c ON c.id_categorie = ec.id_categorie
@@ -85,5 +89,25 @@ class EquipmentRepository
             ";
 
         return $db->select($query, ['id' => $id])[0] ?? null;
+    }
+
+    /**
+     * @param int $id
+     * @return void
+     */
+    public static function deleteById(int $id): void
+    {
+        $db = DatabaseManager::getInstance();
+
+        $id = max(1, intval($id));
+
+        $db->insert(
+            "DELETE FROM equipment WHERE id_equipment = :id",
+            ['id' => $id]
+        );
+        $db->insert(
+            "DELETE FROM equipement_categorie WHERE id_equipment = :id",
+            ['id' => $id]
+        );
     }
 }
