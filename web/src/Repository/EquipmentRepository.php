@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Database\DatabaseManager;
+use Exception;
 
 class EquipmentRepository
 {
@@ -109,5 +110,40 @@ class EquipmentRepository
             "DELETE FROM equipement_categorie WHERE id_equipment = :id",
             ['id' => $id]
         );
+    }
+
+    /**
+     * @param $id_equipment
+     * @param $quantity
+     * @param $start_date
+     * @param $end_date
+     * @param $id_user
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
+    public static function addPannier($id_user, $id_equipment, $quantity, $start_date, $end_date)
+    {
+        try {
+            $db = DatabaseManager::getInstance();
+
+            $id_user = max(1, intval($id_user));
+            $id_equipment = max(1, intval($id_equipment));
+            $quantity = max(1, intval($quantity));
+
+            $db->insert(
+                "INSERT INTO cart (id_user, id_equipment, quantity, start, end) VALUES (:id_user, :id_equipment, :quantity, :start, :end)",
+                [
+                    'id_user'      => $id_user,
+                    'id_equipment' => $id_equipment,
+                    'quantity'     => $quantity,
+                    'start'        => $start_date,
+                    'end'          => $end_date,
+                ]
+            );
+        } catch (Exception $e) {
+            throw new Exception("Erreur lors de l'ajout de l'équipement au panier : " . $e->getMessage());
+        }
     }
 }
