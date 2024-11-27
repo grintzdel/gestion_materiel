@@ -9,38 +9,20 @@
             <div class="header__nav__menu__list">
                 <div class="header__nav__menu__list__items">
                     <div class="header__nav__menu__list__items__item">
-                        <a href="/">How ?</a>
+                        <a href="<?= __SITE_REPOSITORY__ ?>/">How ?</a>
+                        <div class="header__nav__menu__list__items__item__wrapper"></div>
                     </div>
                     <div class="header__nav__menu__list__items__item">
                         <a href="<?= __SITE_REPOSITORY__ ?>/profil">Profil</a>
+                        <div class="header__nav__menu__list__items__item__wrapper"></div>
                     </div>
                     <div class="header__nav__menu__list__items__item">
-                        <a href="<?= __SITE_REPOSITORY__ ?>/equipment/listPannier">Panier</a>
+                        <a href="<?= __SITE_REPOSITORY__ ?>/">Panier</a>
+                        <div class="header__nav__menu__list__items__item__wrapper"></div>
                     </div>
                     <div class="header__nav__menu__list__items__item">
-                        <details class="header__nav__menu__details" open>
-                            <summary class="header__nav__menu__details__heading">
-                                <a class="header__nav__menu__details__heading__title">Equipements</a>
-                                <img src="<?= __SITE_REPOSITORY__ ?>/views/svg/open-close--white.svg" alt="Toogle menu">
-                            </summary>
-                            <ul class="header__nav__menu__details__list">
-                                <li><a href="/">Tout</a></li>
-                                <li><a href="/">Appareils photo</a></li>
-                                <li><a href="/">Caméras</a></li>
-                                <li><a href="/">Micros</a></li>
-                                <li><a href="/">Enregistreurs</a></li>
-                                <li><a href="/">Câbles</a></li>
-                                <li><a href="/">Adaptateurs</a></li>
-                                <li><a href="/">Casques</a></li>
-                                <li><a href="/">Trépieds</a></li>
-                                <li><a href="/">Eclairages</a></li>
-                                <li><a href="/">Perches</a></li>
-                                <li><a href="/">Moniteurs</a></li>
-                                <li><a href="/">Objectifs photo</a></li>
-                                <li><a href="/">Ordinateurs</a></li>
-                                <li><a href="/">Autres</a></li>
-                            </ul>
-                        </details>
+                        <a href="<?= __SITE_REPOSITORY__ ?>/equipment">Equipements</a>
+                        <div class="header__nav__menu__list__items__item__wrapper"></div>
                     </div>
                 </div>
             </div>

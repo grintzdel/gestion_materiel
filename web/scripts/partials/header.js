@@ -23,7 +23,7 @@ function animateOpenNav() {
         delay: 0.1,
     });
 
-    tl.from(".header__nav__menu__list > div", 0.4, {
+    tl.from(".header__nav__menu > div", 0.4, {
         opacity: 0,
         y: 10,
         stagger: {
@@ -35,7 +35,7 @@ function animateOpenNav() {
         ".header__nav__menu__list__items__item > a",
         0.8,
         {
-            top: -15,
+            top: -40,
             ease: "power2.inOut",
             stagger: {
                 amount: 0.1,
