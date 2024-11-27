@@ -4,6 +4,7 @@ use App\Database\DatabaseManager;
 use App\Helpers\Template;
 use App\Repository\CategorieRepository;
 use App\Repository\EquipmentRepository;
+use App\Repository\UserRepository;
 use App\Validator\Equipment;
 
 class AdminController
@@ -163,5 +164,69 @@ class AdminController
         EquipmentRepository::deleteById($id_equipment);
 
         header('Location: /admin/equipment/list');
+    }
+
+    public function listUser()
+    {
+        if (!$_SESSION['user_info']) {
+            header('Location: /connexion');
+            exit;
+        }
+        if ($_SESSION['user_info']['role'] !== 'admin') {
+            header('Location: /profil');
+            exit;
+        }
+
+        $users = UserRepository::getAll();
+
+        Template::renderTemplate('templates/pages/admin/listUser.php', [
+            'users' => $users,
+        ]);
+    }
+
+    public function addUser()
+    {
+        if (!$_SESSION['user_info']) {
+            header('Location: /connexion');
+            exit;
+        }
+        if ($_SESSION['user_info']['role'] !== 'admin') {
+            header('Location: /profil');
+            exit;
+        }
+
+        $error = null;
+
+        $userName = htmlspecialchars(filter_input(INPUT_POST, 'username'));
+        $firstName = htmlspecialchars(filter_input(INPUT_POST, 'firstname'));
+        $lastName = htmlspecialchars(filter_input(INPUT_POST, 'lastname'));
+        $email = htmlspecialchars(filter_input(INPUT_POST, 'email'));
+        $role = htmlspecialchars(filter_input(INPUT_POST, 'role'));
+        $password = htmlspecialchars(filter_input(INPUT_POST, 'password'));
+
+        if (
+            !empty($userName)  &&
+            !empty($firstName) &&
+            !empty($lastName)  &&
+            !empty($email)     &&
+            !empty($role)      &&
+            !empty($password)
+        ) {
+            try {
+                UserRepository::addUser($userName, $firstName, $lastName, $email, $role, $password);
+                header('Location: /admin/user/list');
+            } catch (Exception $e) {
+                $error = $e->getMessage();
+            }
+        }
+
+        Template::renderTemplate('templates/pages/admin/formUser.php', [
+            'username' => $userName,
+            'firstname' => $firstName,
+            'lastname' => $lastName,
+            'email' => $email,
+            'role' => $role,
+            'error' => $error,
+        ]);
     }
 }
