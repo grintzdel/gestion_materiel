@@ -146,4 +146,104 @@ class EquipmentRepository
             throw new Exception("Erreur lors de l'ajout de l'équipement au panier : " . $e->getMessage());
         }
     }
+
+    /**
+     * @param $id_user
+     *
+     * @return array
+     *
+     * @throws Exception
+     */
+    public static function getPannier($id_user)
+    {
+        try {
+            $db = DatabaseManager::getInstance();
+
+            $id_user = max(1, intval($id_user));
+
+            return $db->select("
+                SELECT * 
+                FROM cart 
+                LEFT JOIN equipment e ON e.id_equipment = cart.id_equipment
+                WHERE id_user = :id_user
+                ", [
+                'id_user' => $id_user
+            ]);
+        } catch (Exception $e) {
+            throw new Exception("Erreur lors de la récupération du panier : " . $e->getMessage());
+        }
+    }
+
+    /**
+     * @param $id
+     *
+     * @return string|void
+     */
+    public static function deleteFromCart($id)
+    {
+        try {
+            $db = DatabaseManager::getInstance();
+
+            $id = max(1, intval($id));
+
+            $db->insert(
+                "DELETE FROM cart WHERE id_cart = :id_cart",
+                ['id_cart' => $id]
+            );
+        } catch (Exception $e) {
+            return "Erreur lors de la suppression de l'équipement du panier : " . $e->getMessage();
+        }
+    }
+
+    /**
+     * @param $id_user
+     *
+     * @return string|void
+     */
+    public static function deleteCart($id_user)
+    {
+        try {
+            $db = DatabaseManager::getInstance();
+
+            $id_user = max(1, intval($id_user));
+
+            $db->insert(
+                "DELETE FROM cart WHERE id_user = :id_user",
+                ['id_user' => $id_user]
+            );
+        } catch (Exception $e) {
+            return "Erreur lors de la suppression du panier : " . $e->getMessage();
+        }
+    }
+
+    public static function addReservation($id_user, array $carts)
+    {
+        try {
+            $db = DatabaseManager::getInstance();
+
+            $id_user = max(1, intval($id_user));
+
+            foreach ($carts as $cart) {
+                $db->insert(
+                    "INSERT INTO reservation (id_user, id_equipment, quantity, start, end) VALUES (:id_user, :id_equipment, :quantity, :start, :end)",
+                    [
+                        'id_user' => $id_user,
+                        'id_equipment' => $cart['id_equipment'],
+                        'quantity' => $cart['quantity'],
+                        'start' => $cart['start'],
+                        'end' => $cart['end'],
+                    ]
+                );
+                $db->insert(
+                    "UPDATE equipment SET available = available - :quantity WHERE id_equipment = :id_equipment",
+                    [
+                        'quantity' => $cart['quantity'],
+                        'id_equipment' => $cart['id_equipment'],
+                    ]
+                );
+            }
+        } catch (Exception $e) {
+            throw new Exception("Erreur lors de la réservation de l'équipement : " . $e->getMessage());
+        }
+    }
 }

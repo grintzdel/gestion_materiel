@@ -8,11 +8,13 @@ $routes = [
     '/deconnexion'  => 'UserController@logout',
     '/user/addClef' => 'UserController@addKey',
 
-    '/equipment'             => 'EquipmentController@equipmentListAndTemplate',
-    '/equipment/find'        => 'EquipmentController@findEquipment',
-    '/equipment/showOne'     => 'EquipmentController@showOne',
-    '/equipment/addPannier'  => 'EquipmentController@addPannier',
-    '/equipment/listPannier' => 'EquipmentController@listPannier',
+    '/equipment'                => 'EquipmentController@equipmentListAndTemplate',
+    '/equipment/find'           => 'EquipmentController@findEquipment',
+    '/equipment/showOne'        => 'EquipmentController@showOne',
+    '/equipment/addPannier'     => 'EquipmentController@addPannier',
+    '/equipment/listPannier'    => 'EquipmentController@listPannier',
+    '/equipment/deleteFromCart' => 'EquipmentController@deletePannier',
+    '/equipment/validateCart'   => 'EquipmentController@validateCart',
 
     '/admin/equipment/add'    => 'AdminController@addEquipment',
     '/admin/equipment/edit'   => 'AdminController@editEquipment',

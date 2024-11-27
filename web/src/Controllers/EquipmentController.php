@@ -121,9 +121,61 @@ class EquipmentController
     }
 
 
-    public function listPannier()
+    public function listPannier($error = null)
     {
+        if (!$_SESSION['user_info']) {
+            header('Location: /connexion');
+            exit;
+        }
 
+        $id_user = $_SESSION['user_info']['id'];
+        $cart = EquipmentRepository::getPannier($id_user);
+
+        Template::renderTemplate('templates/pages/equipment/cart.php', [
+            'cart' => $cart,
+            'error' => $error,
+        ]);
+    }
+
+    public function deletePannier()
+    {
+        if (!$_SESSION['user_info']) {
+            header('Location: /connexion');
+            exit;
+        }
+
+        $id = max(1, intval($_POST['id'])) ?? null;
+        if ($id === null) {
+            header('Location: /equipment/listPannier');
+            exit;
+        }
+
+        $this->listPannier(EquipmentRepository::deleteFromCart($id));
+    }
+
+    public function validateCart()
+    {
+        if (!$_SESSION['user_info']) {
+            header('Location: /connexion');
+            exit;
+        }
+
+        $id_user = $_SESSION['user_info']['id'];
+        $carts = EquipmentRepository::getPannier($id_user);
+
+        if (empty($carts)) {
+            $this->listPannier('Votre panier est vide vous ne pouvez pas reserver');
+            exit;
+        }
+
+        try {
+            EquipmentRepository::addReservation($id_user, $carts);
+
+            EquipmentRepository::deleteCart($id_user);
+            header('Location: /equipment/listPannier');
+        } catch (Exception $e) {
+            $this->listPannier('Erreur lors de la validation du panier : ' . $e->getMessage());
+        }
     }
 
 
