@@ -29,24 +29,25 @@ class UserController
         if (!empty($username) && !empty($password)) {
             $db = DatabaseManager::getInstance();
             $user = $db->select(
-                "SELECT * FROM user WHERE username = :username AND password = :password",
+                "SELECT * FROM user WHERE username = :username",
                 [
                     "username" => $username,
-                    "password" => $password,
                 ]
             );
 
             if (!empty($user)) {
-                $_SESSION['user_info']['id']        = $user[0]['id'];
-                $_SESSION['user_info']['username']  = $user[0]['username'];
-                $_SESSION['user_info']['firstname'] = $user[0]['firstname'];
-                $_SESSION['user_info']['lastname']  = $user[0]['lastname'];
-                $_SESSION['user_info']['role']      = $user[0]['role'];
-                $_SESSION['user_info']['clef']      = $user[0]['clef'];
+                if (password_verify($password, $user[0]['password'])) {
+                    $_SESSION['user_info']['id']        = $user[0]['id'];
+                    $_SESSION['user_info']['username']  = $user[0]['username'];
+                    $_SESSION['user_info']['firstname'] = $user[0]['firstname'];
+                    $_SESSION['user_info']['lastname']  = $user[0]['lastname'];
+                    $_SESSION['user_info']['role']      = $user[0]['role'];
+                    $_SESSION['user_info']['clef']      = $user[0]['clef'];
 
-                header('Location: /profil');
-            } else {
-                $error = "Identifiant ou mot de passe incorrect";
+                    header('Location: /profil');
+                } else {
+                    $error = "Identifiant ou mot de passe incorrect";
+                }
             }
         }
 
