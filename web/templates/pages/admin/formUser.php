@@ -11,7 +11,7 @@ ob_start();
 ?>
 
 <h1>Ajouter un utilisateur</h1>
-<form action="/admin/user/add" method="post">
+<form action="<?= __SITE_REPOSITORY__ ?>/admin/user/add" method="post">
     <label for="username">Nom d'utilisateur</label>
     <input type="text" id="username" name="username" value="<?php if (isset($userName)) {echo $userName;} ?>" required>
     <label for="firstname">Prénom</label>

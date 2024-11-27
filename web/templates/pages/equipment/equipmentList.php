@@ -21,7 +21,7 @@ ob_start();
         <details class="filter">
             <summary class="filter__header">
                 <h3 class="filter__header__title">Catégories</h3>
-                <img src="/views/svg/open-close--black.svg" alt="Afficher les catégories" class="filter__header__icon">
+                <img src="<?= __SITE_REPOSITORY__ ?>/views/svg/open-close--black.svg" alt="Afficher les catégories" class="filter__header__icon">
             </summary>
             <div class="filter__content">
                 <ul class="filter__list">
@@ -39,7 +39,7 @@ ob_start();
         <details class="filter">
             <summary class="filter__header">
                 <h3 class="filter__header__title">Disponibilités</h3>
-                <img src="/views/svg/open-close--black.svg" alt="Afficher les disponibilités" class="filter__header__icon">
+                <img src="<?= __SITE_REPOSITORY__ ?>/views/svg/open-close--black.svg" alt="Afficher les disponibilités" class="filter__header__icon">
             </summary>
             <div class="filter__content">
                 <ul class="filter__list">
@@ -69,7 +69,7 @@ ob_start();
                 </div>
                 <div class="equipment__content">
                     <h2 class="equipment__content__title"><?= $material['name'] ?></h2>
-                    <a href="/equipment/showOne?id=<?= $material['id_equipment'] ?>"
+                    <a href="<?= __SITE_REPOSITORY__ ?>/equipment/showOne?id=<?= $material['id_equipment'] ?>"
                     class="button <?php if ($material['available'] > 0) : ?> button--primary 
                     <?php else : ?> button--secondary <?php endif; ?>"><?php if ($material['available'] > 0) : ?> Disponible 
                     <?php else : ?> Indisponible <?php endif; ?></a>

@@ -7,5 +7,8 @@ header("Access-Control-Allow-Headers: Content-Type");
 ini_set('session.cookie_lifetime', 60*60*24*7); // sec * min * hours * days
 session_start();
 
+// constants
+const __SITE_REPOSITORY__ = '';
+
 require_once __DIR__ . '/autoLoader/autoLoader.php';
 require_once __DIR__ . '/routes/router.php';

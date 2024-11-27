@@ -6,7 +6,7 @@ ob_start();
 ?>
 
     <h1 class="title">Ajouter une clef</h1>
-    <form action="/user/addClef" method="post">
+    <form action="<?= __SITE_REPOSITORY__ ?>/user/addClef" method="post">
         <label for="key">Clef</label>
         <input type="text" name="key" id="key" placeholder="numéros de la clef" required>
 

@@ -15,7 +15,7 @@ ob_start();
 ?>
 
 <h1 class="title"><?php echo $isEditing ? 'Modification du matériel' : 'Ajouter du matériel' ;?></h1>
-<form action="<?php echo $isEditing ? '/admin/equipment/edit?id_equipment='.$id_equipment : '/admin/equipment/add'; ?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo $isEditing ? __SITE_REPOSITORY__ . '/admin/equipment/edit?id_equipment='.$id_equipment : __SITE_REPOSITORY__ . '/admin/equipment/add'; ?>" method="post" enctype="multipart/form-data">
     <label for="name">Nom du matériel</label>
     <input type="text" name="name" id="name" placeholder="Nom du matériel" value="<?= $name ?>" required>
     <br>

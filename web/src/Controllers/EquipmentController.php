@@ -62,7 +62,7 @@ class EquipmentController
 
         $equipment = EquipmentRepository::getOne($id);
         if ($equipment === null) {
-            header('Location: /equipment');
+            header('Location: ' . __SITE_REPOSITORY__ . '/equipment');
             return;
         }
 
@@ -76,7 +76,7 @@ class EquipmentController
     public function addPannier()
     {
         if (!$_SESSION['user_info']) {
-            header('Location: /connexion');
+            header('Location: ' . __SITE_REPOSITORY__ . '/connexion');
             exit;
         }
 
@@ -112,7 +112,7 @@ class EquipmentController
 
         try {
             EquipmentRepository::addPannier($id_user, $id_equipment, $quantity, $start_date, $end_date);
-            header('Location: /equipment/listPannier');
+            header('Location: ' . __SITE_REPOSITORY__ . '/equipment/listPannier');
         } catch (Exception $e) {
             $error = 'Erreur lors de l\'ajout au pannier : ' . $e->getMessage();
             $this->showOne($id_equipment, $error);
@@ -124,7 +124,7 @@ class EquipmentController
     public function listPannier($error = null)
     {
         if (!$_SESSION['user_info']) {
-            header('Location: /connexion');
+            header('Location: ' . __SITE_REPOSITORY__ . '/connexion');
             exit;
         }
 
@@ -140,13 +140,13 @@ class EquipmentController
     public function deletePannier()
     {
         if (!$_SESSION['user_info']) {
-            header('Location: /connexion');
+            header('Location: ' . __SITE_REPOSITORY__ . '/connexion');
             exit;
         }
 
         $id = max(1, intval($_POST['id'])) ?? null;
         if ($id === null) {
-            header('Location: /equipment/listPannier');
+            header('Location: ' . __SITE_REPOSITORY__ . '/equipment/listPannier');
             exit;
         }
 
@@ -156,7 +156,7 @@ class EquipmentController
     public function validateCart()
     {
         if (!$_SESSION['user_info']) {
-            header('Location: /connexion');
+            header('Location: ' . __SITE_REPOSITORY__ . '/connexion');
             exit;
         }
 
@@ -172,11 +172,9 @@ class EquipmentController
             EquipmentRepository::addReservation($id_user, $carts);
 
             EquipmentRepository::deleteCart($id_user);
-            header('Location: /equipment/listPannier');
+            header('Location: ' . __SITE_REPOSITORY__ . '/equipment/listPannier');
         } catch (Exception $e) {
             $this->listPannier('Erreur lors de la validation du panier : ' . $e->getMessage());
         }
     }
-
-
 }

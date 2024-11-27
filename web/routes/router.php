@@ -1,27 +1,27 @@
 <?php
 
 $routes = [
-    '/' => 'HomeController@index',
+    __SITE_REPOSITORY__.'/' => 'HomeController@index',
 
-    '/connexion'    => 'UserController@connexion',
-    '/profil'       => 'UserController@profile',
-    '/deconnexion'  => 'UserController@logout',
-    '/user/addClef' => 'UserController@addKey',
+    __SITE_REPOSITORY__.'/connexion'    => 'UserController@connexion',
+    __SITE_REPOSITORY__.'/profil'       => 'UserController@profile',
+    __SITE_REPOSITORY__.'/deconnexion'  => 'UserController@logout',
+    __SITE_REPOSITORY__.'/user/addClef' => 'UserController@addKey',
 
-    '/equipment'                => 'EquipmentController@equipmentListAndTemplate',
-    '/equipment/find'           => 'EquipmentController@findEquipment',
-    '/equipment/showOne'        => 'EquipmentController@showOne',
-    '/equipment/addPannier'     => 'EquipmentController@addPannier',
-    '/equipment/listPannier'    => 'EquipmentController@listPannier',
-    '/equipment/deleteFromCart' => 'EquipmentController@deletePannier',
-    '/equipment/validateCart'   => 'EquipmentController@validateCart',
+    __SITE_REPOSITORY__.'/equipment'                => 'EquipmentController@equipmentListAndTemplate',
+    __SITE_REPOSITORY__.'/equipment/find'           => 'EquipmentController@findEquipment',
+    __SITE_REPOSITORY__.'/equipment/showOne'        => 'EquipmentController@showOne',
+    __SITE_REPOSITORY__.'/equipment/addPannier'     => 'EquipmentController@addPannier',
+    __SITE_REPOSITORY__.'/equipment/listPannier'    => 'EquipmentController@listPannier',
+    __SITE_REPOSITORY__.'/equipment/deleteFromCart' => 'EquipmentController@deletePannier',
+    __SITE_REPOSITORY__.'/equipment/validateCart'   => 'EquipmentController@validateCart',
 
-    '/admin/equipment/add'    => 'AdminController@addEquipment',
-    '/admin/equipment/edit'   => 'AdminController@editEquipment',
-    '/admin/equipment/list'   => 'AdminController@listEquipment',
-    '/admin/equipment/delete' => 'AdminController@deleteEquipment',
-    '/admin/user/list'        => 'AdminController@listUser',
-    '/admin/user/add'         => 'AdminController@addUser',
+    __SITE_REPOSITORY__.'/admin/equipment/add'    => 'AdminController@addEquipment',
+    __SITE_REPOSITORY__.'/admin/equipment/edit'   => 'AdminController@editEquipment',
+    __SITE_REPOSITORY__.'/admin/equipment/list'   => 'AdminController@listEquipment',
+    __SITE_REPOSITORY__.'/admin/equipment/delete' => 'AdminController@deleteEquipment',
+    __SITE_REPOSITORY__.'/admin/user/list'        => 'AdminController@listUser',
+    __SITE_REPOSITORY__.'/admin/user/add'         => 'AdminController@addUser',
 
 ];
 

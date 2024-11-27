@@ -12,16 +12,16 @@
                         <a href="/">How ?</a>
                     </div>
                     <div class="header__nav__menu__list__items__item">
-                        <a href="/profil">Profil</a>
+                        <a href="<?= __SITE_REPOSITORY__ ?>/profil">Profil</a>
                     </div>
                     <div class="header__nav__menu__list__items__item">
-                        <a href="/">Panier</a>
+                        <a href="<?= __SITE_REPOSITORY__ ?>/equipment/listPannier">Panier</a>
                     </div>
                     <div class="header__nav__menu__list__items__item">
                         <details class="header__nav__menu__details" open>
                             <summary class="header__nav__menu__details__heading">
                                 <a class="header__nav__menu__details__heading__title">Equipements</a>
-                                <img src="/views/svg/open-close--white.svg" alt="Toogle menu">
+                                <img src="<?= __SITE_REPOSITORY__ ?>/views/svg/open-close--white.svg" alt="Toogle menu">
                             </summary>
                             <ul class="header__nav__menu__details__list">
                                 <li><a href="/">Tout</a></li>

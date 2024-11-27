@@ -10,7 +10,7 @@ ob_start();
     <p><?= $key ?> : <?= $value ?></p>
 <?php endforeach; ?>
 
-<a href="/deconnexion">Déconnexion</a>
+<a href="<?= __SITE_REPOSITORY__ ?>/deconnexion">Déconnexion</a>
 <?php
 $content = ob_get_clean();
 require_once __DIR__ . '/../base.php';

@@ -8,6 +8,7 @@ use Exception;
 class Equipment
 {
     /**
+     * @param bool $isEditing
      * @param array $data
      *
      * @throws Exception

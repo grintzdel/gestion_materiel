@@ -7,11 +7,11 @@
 <section class="auth">
     <div class="auth__container">
         <div class="auth__img">
-            <img src="/views/img/form__img.png" alt="IUT Chambéry">
+            <img src="<?= __SITE_REPOSITORY__ ?>/views/img/form__img.png" alt="IUT Chambéry">
         </div>
         <div class="auth__form">
             <h1 class="auth__form__title">Content de te revoir !</h1>
-            <form action="/connexion" method="post">
+            <form action="<?= __SITE_REPOSITORY__ ?>/connexion" method="post">
                 <label for="username">Nom d'utilisateur</label>
                 <input type="text" name="username" id="username" placeholder="Entre ton nom d'utilisateur" value="<?= $username ?>" required>
 

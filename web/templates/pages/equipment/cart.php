@@ -29,7 +29,7 @@ ob_start();
                 <td><?= $item['start'] ?></td>
                 <td><?= $item['end'] ?></td>
                 <td>
-                    <form action="/equipment/deleteFromCart" method="post">
+                    <form action="<?= __SITE_REPOSITORY__ ?>/equipment/deleteFromCart" method="post">
                         <input type="hidden" name="id" value="<?= $item['id_cart'] ?>">
                         <button type="submit">Delete</button>
                     </form>
@@ -38,7 +38,7 @@ ob_start();
         <?php endforeach; ?>
         </tbody>
     </table>
-    <form action="/equipment/validateCart" method="post">
+    <form action="<?= __SITE_REPOSITORY__ ?>/equipment/validateCart" method="post">
         <button type="submit">Validate</button>
     </form>
     <?php if (isset($error)): ?>

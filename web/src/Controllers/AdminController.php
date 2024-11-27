@@ -12,10 +12,10 @@ class AdminController
     public function listEquipment()
     {
         if (!$_SESSION['user_info']) {
-            header('Location: /connexion');
+            header('Location: ' . __SITE_REPOSITORY__ . '/connexion');
         }
         if ($_SESSION['user_info']['role'] !== 'admin') {
-            header('Location: /profil');
+            header('Location: ' . __SITE_REPOSITORY__ . '/profil');
         }
 
         $materials = EquipmentRepository::getAll();
@@ -31,10 +31,10 @@ class AdminController
     public function addEquipment()
     {
         if (!$_SESSION['user_info']) {
-            header('Location: /connexion');
+            header('Location: ' . __SITE_REPOSITORY__ . '/connexion');
         }
         if ($_SESSION['user_info']['role'] !== 'admin') {
-            header('Location: /profil');
+            header('Location: ' . __SITE_REPOSITORY__ . '/profil');
         }
         $error = null;
 
@@ -58,7 +58,7 @@ class AdminController
                     'categoriesSelect' => $categoriesSelect,
                 ]);
 
-                header('Location: /admin/equipment/list');
+                header('Location: ' . __SITE_REPOSITORY__ . '/admin/equipment/list');
             } catch (Exception $e) {
                 $error = $e->getMessage();
             }
@@ -82,10 +82,10 @@ class AdminController
     public function editEquipment()
     {
         if (!$_SESSION['user_info']) {
-            header('Location: /connexion');
+            header('Location: ' . __SITE_REPOSITORY__ . '/connexion');
         }
         if ($_SESSION['user_info']['role'] !== 'admin') {
-            header('Location: /profil');
+            header('Location: ' . __SITE_REPOSITORY__ . '/profil');
         }
         $error = null;
         $id_equipment = $_GET['id_equipment'];
@@ -93,7 +93,7 @@ class AdminController
         $equipment = EquipmentRepository::getOne($id_equipment);
 
         if (!$equipment) {
-            header('Location: /admin/equipment/list');
+            header('Location: ' . __SITE_REPOSITORY__ . '/admin/equipment/list');
             exit;
         }
 
@@ -118,7 +118,7 @@ class AdminController
                     'categoriesSelect' => $categoriesSelect,
                 ]);
 
-                header('Location: /admin/equipment/list');
+                header('Location: ' . __SITE_REPOSITORY__ . '/admin/equipment/list');
             } catch (Exception $e) {
                 $error = "Erreur lors de la modification de l'équipement : " . $e->getMessage();
             }
@@ -152,28 +152,28 @@ class AdminController
     public function deleteEquipment()
     {
         if (!$_SESSION['user_info']) {
-            header('Location: /connexion');
+            header('Location: ' . __SITE_REPOSITORY__ . '/connexion');
             exit;
         }
         if ($_SESSION['user_info']['role'] !== 'admin') {
-            header('Location: /profil');
+            header('Location: ' . __SITE_REPOSITORY__ . '/profil');
             exit;
         }
         $id_equipment = $_GET['id_equipment'];
 
         EquipmentRepository::deleteById($id_equipment);
 
-        header('Location: /admin/equipment/list');
+        header('Location: ' . __SITE_REPOSITORY__ . '/admin/equipment/list');
     }
 
     public function listUser()
     {
         if (!$_SESSION['user_info']) {
-            header('Location: /connexion');
+            header('Location: ' . __SITE_REPOSITORY__ . '/connexion');
             exit;
         }
         if ($_SESSION['user_info']['role'] !== 'admin') {
-            header('Location: /profil');
+            header('Location: ' . __SITE_REPOSITORY__ . '/profil');
             exit;
         }
 
@@ -187,22 +187,22 @@ class AdminController
     public function addUser()
     {
         if (!$_SESSION['user_info']) {
-            header('Location: /connexion');
+            header('Location: ' . __SITE_REPOSITORY__ . '/connexion');
             exit;
         }
         if ($_SESSION['user_info']['role'] !== 'admin') {
-            header('Location: /profil');
+            header('Location: ' . __SITE_REPOSITORY__ . '/profil');
             exit;
         }
 
         $error = null;
 
-        $userName = htmlspecialchars(filter_input(INPUT_POST, 'username'));
+        $userName  = htmlspecialchars(filter_input(INPUT_POST, 'username'));
         $firstName = htmlspecialchars(filter_input(INPUT_POST, 'firstname'));
-        $lastName = htmlspecialchars(filter_input(INPUT_POST, 'lastname'));
-        $email = htmlspecialchars(filter_input(INPUT_POST, 'email'));
-        $role = htmlspecialchars(filter_input(INPUT_POST, 'role'));
-        $password = htmlspecialchars(filter_input(INPUT_POST, 'password'));
+        $lastName  = htmlspecialchars(filter_input(INPUT_POST, 'lastname'));
+        $email     = htmlspecialchars(filter_input(INPUT_POST, 'email'));
+        $role      = htmlspecialchars(filter_input(INPUT_POST, 'role'));
+        $password  = htmlspecialchars(filter_input(INPUT_POST, 'password'));
 
         if (
             !empty($userName)  &&
@@ -214,7 +214,7 @@ class AdminController
         ) {
             try {
                 UserRepository::addUser($userName, $firstName, $lastName, $email, $role, $password);
-                header('Location: /admin/user/list');
+                header('Location: ' . __SITE_REPOSITORY__ . '/admin/user/list');
             } catch (Exception $e) {
                 $error = $e->getMessage();
             }

@@ -26,7 +26,7 @@ class EquipmentRepository
                     e.available,
                     e.total,
                     e.require_key,
-                    CONCAT('/views/img/', e.image) AS image,
+                    CONCAT('". __SITE_REPOSITORY__ ."/views/img/', e.image) AS image,
                     GROUP_CONCAT(c.name SEPARATOR ',') AS categories
                 FROM equipment e 
                 LEFT JOIN equipement_categorie ec ON ec.id_equipment = e.id_equipment 
@@ -52,7 +52,7 @@ class EquipmentRepository
                     e.available,
                     e.total,
                     e.require_key,
-                    CONCAT('/views/img/', e.image) AS image,
+                    CONCAT('" . __SITE_REPOSITORY__ . "/views/img/', e.image) AS image,
                     GROUP_CONCAT(c.name SEPARATOR ',') as categories
                 FROM equipment e
                 LEFT JOIN equipement_categorie ec ON ec.id_equipment = e.id_equipment 
@@ -79,7 +79,7 @@ class EquipmentRepository
                     e.available,
                     e.total,
                     e.require_key,
-                    CONCAT('/views/img/', e.image) AS image,
+                    CONCAT('". __SITE_REPOSITORY__ ."/views/img/', e.image) AS image,
                     GROUP_CONCAT(c.name SEPARATOR ',') as categories,
                     GROUP_CONCAT(ec.id_categorie SEPARATOR ',') as id_categories
                 FROM equipment e

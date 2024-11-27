@@ -37,7 +37,7 @@ ob_start();
     </table>
 <?php endif; ?>
 <br>
-<a href="/admin/user/add">Ajouter un utilisateur</a>
+<a href="<?= __SITE_REPOSITORY__ ?>/admin/user/add">Ajouter un utilisateur</a>
 
 
 <?php

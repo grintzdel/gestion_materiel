@@ -8,7 +8,7 @@ class UserController
     public function profile()
     {
         if (!$_SESSION['user_info']) {
-            header('Location: /connexion');
+            header('Location: ' . __SITE_REPOSITORY__ . '/connexion');
         }
 
         Template::renderTemplate('templates/pages/user/profil.php', [
@@ -19,7 +19,7 @@ class UserController
     public function connexion()
     {
         if ($_SESSION['user_info']) {
-            header('Location: /profil');
+            header('Location: ' . __SITE_REPOSITORY__ . '/profil');
             exit;
         }
 
@@ -48,7 +48,7 @@ class UserController
                     $_SESSION['user_info']['role']      = $user[0]['role'];
                     $_SESSION['user_info']['clef']      = $user[0]['clef'];
 
-                    header('Location: /profil');
+                    header('Location: ' . __SITE_REPOSITORY__ . '/profil');
                 } else {
                     $error = "Identifiant ou mot de passe incorrect";
                 }
@@ -64,17 +64,17 @@ class UserController
     public function logout()
     {
         session_destroy();
-        header('Location: /');
+        header('Location: ' . __SITE_REPOSITORY__ . '/');
     }
 
     public function addKey()
     {
         if ($_SESSION['user_info']['clef']) {
-            header('Location: /profil');
+            header('Location: ' . __SITE_REPOSITORY__ . '/profil');
             exit;
         }
 
-        $key = htmlspecialchars(filter_input(INPUT_POST, 'key'));
+        $key  = htmlspecialchars(filter_input(INPUT_POST, 'key'));
         $code = htmlspecialchars(filter_input(INPUT_POST, 'code'));
 
         if (!empty($key) && !empty($code)) {
@@ -92,7 +92,7 @@ class UserController
                     "UPDATE user SET id_clef = :id_clef WHERE id = :id",
                     [
                         "id_clef" => $keyResult[0]['id_clef'],
-                        "id"   => $_SESSION['user_info']['id'],
+                        "id"      => $_SESSION['user_info']['id'],
                     ]
                 );
                 $db->insert(
@@ -105,7 +105,7 @@ class UserController
 
                 $_SESSION['user_info']['clef'] = $keyResult[0]['clef'];
 
-                header('Location: /profil');
+                header('Location: ' . __SITE_REPOSITORY__ . '/profil');
             } else {
                 $error = "clef ou code incorrect, ou déja utilisé";
             }

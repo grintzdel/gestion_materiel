@@ -21,7 +21,7 @@ ob_start();
             <details class="filter">
                 <summary class="filter__header">
                     <h3 class="filter__header__title">Catégories</h3>
-                    <img src="/views/svg/open-close--black.svg" alt="Afficher les catégories" class="filter__header__icon">
+                    <img src="<?= __SITE_REPOSITORY__ ?>/views/svg/open-close--black.svg" alt="Afficher les catégories" class="filter__header__icon">
                 </summary>
                 <div class="filter__content">
                     <ul class="filter__list">
@@ -39,7 +39,7 @@ ob_start();
             <details class="filter">
                 <summary class="filter__header">
                     <h3 class="filter__header__title">Disponibilités</h3>
-                    <img src="/views/svg/open-close--black.svg" alt="Afficher les disponibilités" class="filter__header__icon">
+                    <img src="<?= __SITE_REPOSITORY__ ?>/views/svg/open-close--black.svg" alt="Afficher les disponibilités" class="filter__header__icon">
                 </summary>
                 <div class="filter__content">
                     <ul class="filter__list">
@@ -76,8 +76,8 @@ ob_start();
                                 Disponible
                             <?php else : ?> Indisponible <?php endif; ?>
                         </a>
-                        <a href="/admin/equipment/edit?id_equipment=<?= $material['id_equipment'] ?>" class="button button--primary">Modifier</a>
-                        <a href="/admin/equipment/delete?id_equipment=<?= $material['id_equipment'] ?>" class="button button--primary">Supprimer</a>
+                        <a href="<?= __SITE_REPOSITORY__ ?>/admin/equipment/edit?id_equipment=<?= $material['id_equipment'] ?>" class="button button--primary">Modifier</a>
+                        <a href="<?= __SITE_REPOSITORY__ ?>/admin/equipment/delete?id_equipment=<?= $material['id_equipment'] ?>" class="button button--primary">Supprimer</a>
                     </div>
                 </div>
             <?php endforeach; ?>

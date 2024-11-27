@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         : null;
 
       // Envoyer les IDs sélectionnés via une requête AJAX
-      fetch("/equipment/find", {
+      fetch(SITE_REPOSITORY + "/equipment/find", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
