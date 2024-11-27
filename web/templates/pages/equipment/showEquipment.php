@@ -13,7 +13,7 @@ ob_start();
 <br><br>
 <h2>Réserver</h2>
 <form action="/equipment/addPannier" method="post">
-    <input type="hidden" name="id" value="<?= $equipment['id'] ?>">
+    <input type="hidden" name="id" value="<?= $equipment['id_equipment'] ?>">
     <label> Quantité :
         <input type="number" name="quantity" value="1" max="<?= $equipment['available'] ?>">
     </label>

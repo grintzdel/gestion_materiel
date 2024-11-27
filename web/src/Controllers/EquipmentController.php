@@ -56,13 +56,9 @@ class EquipmentController
         echo json_encode(array_values($results));
     }
 
-    public function showOne($error = null)
+    public function showOne($id = null, $error = null)
     {
-        $id = max(1, intval($_GET['id'])) ?? null;
-        if ($id === null) {
-            header('Location: /equipment');
-            return;
-        }
+        $id = intval($_GET['id'] ?? $id);
 
         $equipment = EquipmentRepository::getOne($id);
         if ($equipment === null) {
@@ -72,7 +68,7 @@ class EquipmentController
 
         Template::renderTemplate('templates/pages/equipment/showEquipment.php', [
             'equipment' => $equipment,
-            'error' => $error,
+            'error'     => $error,
         ]);
     }
 
@@ -84,27 +80,33 @@ class EquipmentController
             exit;
         }
 
-        $id_equipment = max(1, intval($_POST['id'])) ?? null;
-        $quantity = max(1, intval($_POST['quantity'])) ?? null;
-        $start_date = isset($_POST['start_date']) ? Date::validateAndFormatDate($_POST['start_date']) : null;
-        $end_date = isset($_POST['end_date']) ? Date::validateAndFormatDate($_POST['end_date']) : null;
-        $id_user = $_SESSION['user_info']['id'];
+        $id_equipment = intval($_POST['id']) ?? null;
+        $quantity     = max(1, intval($_POST['quantity'])) ?? null;
+        $start_date   = isset($_POST['start_date']) ? Date::validateAndFormatDate($_POST['start_date']) : null;
+        $end_date     = isset($_POST['end_date']) ? Date::validateAndFormatDate($_POST['end_date']) : null;
+        $id_user      = $_SESSION['user_info']['id'];
 
         if ($id_equipment === null || $quantity === null || $start_date === null || $end_date === null) {
             $error = 'Veuillez remplir tous les champs';
-            $this->showOne($error);
+            $this->showOne($id_equipment, $error);
             exit;
         }
 
         if ($quantity > EquipmentRepository::getOne($id_equipment)['available']) {
             $error = 'Pas assez de matériel disponible';
-            $this->showOne($error);
+            $this->showOne($id_equipment, $error);
             exit;
         }
 
         if ($start_date > $end_date) {
             $error = 'La date de début doit être inférieure à la date de fin';
-            $this->showOne($error);
+            $this->showOne($id_equipment, $error);
+            exit;
+        }
+
+        if ($start_date < date('Y-m-d')) {
+            $error = 'La date de début doit être supérieure à la date du jour';
+            $this->showOne($id_equipment, $error);
             exit;
         }
 
@@ -113,11 +115,9 @@ class EquipmentController
             header('Location: /equipment/listPannier');
         } catch (Exception $e) {
             $error = 'Erreur lors de l\'ajout au pannier : ' . $e->getMessage();
-            $this->showOne($error);
+            $this->showOne($id_equipment, $error);
             exit;
         }
-
-
     }
 
 

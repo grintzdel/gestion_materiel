@@ -28,8 +28,11 @@ class UserController
 
         if (!empty($username) && !empty($password)) {
             $db = DatabaseManager::getInstance();
-            $user = $db->select(
-                "SELECT * FROM user WHERE username = :username",
+            $user = $db->select("
+                SELECT * 
+                FROM user 
+                LEFT JOIN clef ON user.id_clef = clef.id_clef
+                WHERE username = :username",
                 [
                     "username" => $username,
                 ]
@@ -41,6 +44,7 @@ class UserController
                     $_SESSION['user_info']['username']  = $user[0]['username'];
                     $_SESSION['user_info']['firstname'] = $user[0]['firstname'];
                     $_SESSION['user_info']['lastname']  = $user[0]['lastname'];
+                    $_SESSION['user_info']['email']     = $user[0]['email'];
                     $_SESSION['user_info']['role']      = $user[0]['role'];
                     $_SESSION['user_info']['clef']      = $user[0]['clef'];
 
