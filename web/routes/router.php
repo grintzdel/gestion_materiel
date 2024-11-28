@@ -16,6 +16,7 @@ $routes = [
     __SITE_REPOSITORY__.'/equipment/deleteFromCart' => 'EquipmentController@deletePannier',
     __SITE_REPOSITORY__.'/equipment/validateCart'   => 'EquipmentController@validateCart',
 
+    __SITE_REPOSITORY__.'/admin/panel'            => 'AdminController@panel',
     __SITE_REPOSITORY__.'/admin/equipment/add'    => 'AdminController@addEquipment',
     __SITE_REPOSITORY__.'/admin/equipment/edit'   => 'AdminController@editEquipment',
     __SITE_REPOSITORY__.'/admin/equipment/list'   => 'AdminController@listEquipment',

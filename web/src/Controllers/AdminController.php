@@ -229,4 +229,18 @@ class AdminController
             'error' => $error,
         ]);
     }
+
+    public function panel()
+    {
+        if (!$_SESSION['user_info']) {
+            header('Location: ' . __SITE_REPOSITORY__ . '/connexion');
+            exit;
+        }
+        if ($_SESSION['user_info']['role'] !== 'admin') {
+            header('Location: ' . __SITE_REPOSITORY__ . '/profil');
+            exit;
+        }
+
+        Template::renderTemplate('templates/pages/admin/panel.php');
+    }
 }

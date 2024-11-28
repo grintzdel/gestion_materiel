@@ -32,7 +32,11 @@ ob_start();
                 </div>
             </div>
             <input class="button button--primary" type="submit" name="edit" value="Modifier">
+            <a class="button button--primary" href="<?= __SITE_REPOSITORY__ ?>/user/addClef">Ajouter une clef</a>
             <a class="button button--secondary" href="<?= __SITE_REPOSITORY__ ?>/deconnexion">Déconnexion</a>
+            <?php if ($user['role'] === 'admin') : ?>
+                <a class="button button--secondary" href="<?= __SITE_REPOSITORY__ ?>/admin/panel">page admin</a>
+            <?php endif; ?>
         </form>
 </section>
 <?php
