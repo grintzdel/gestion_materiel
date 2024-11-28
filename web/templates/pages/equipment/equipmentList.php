@@ -71,7 +71,7 @@ ob_start();
                     <h2 class="equipment__content__title"><?= $material['name'] ?></h2>
                     <a href="<?= __SITE_REPOSITORY__ ?>/equipment/showOne?id=<?= $material['id_equipment'] ?>"
                     class="button <?php if ($material['available'] > 0) : ?> button--primary 
-                    <?php else : ?> button--secondary <?php endif; ?>"><?php if ($material['available'] > 0) : ?> Disponible 
+                    <?php else : ?> button--secondary none <?php endif; ?>"><?php if ($material['available'] > 0) : ?> Disponible 
                     <?php else : ?> Indisponible <?php endif; ?></a>
                 </div>
             </div>

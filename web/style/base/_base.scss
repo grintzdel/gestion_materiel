@@ -57,3 +57,8 @@ button {
   background-color: $color-bg-primary;
   border: 1px solid $color-bg-secondary;
 }
+
+.none {
+  cursor: none;
+  pointer-events: none;
+}

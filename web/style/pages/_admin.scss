@@ -1,0 +1,67 @@
+.admin {
+  &__pannel {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    gap: 1.5rem;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+
+    form {
+      font-size: 1.6rem;
+
+      input,
+      textarea {
+        padding: 1.2rem;
+        background-color: $color-bg-secondary;
+        border: none;
+        width: 100%;
+        outline: none;
+
+        &::placeholder {
+          font-size: 1.2rem;
+          color: $font-color-primary;
+        }
+
+        &:focus {
+          border: 1px solid $color-bg-secondary;
+          background-color: $color-bg-primary;
+        }
+
+        &:not(:focus) {
+          border: 1px solid $color-bg-secondary !important;
+          background-color: $color-bg-secondary !important;
+        }
+      }
+
+      textarea,
+      input:not([type="radio"]):not([type="checkbox"]) {
+        margin-bottom: 2rem;
+      }
+
+      input:last-child[type="radio"],
+      input:last-child[type="checkbox"] {
+        margin-bottom: 2rem !important;
+      }
+    }
+
+    &__input {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .button--primary {
+      margin-top: 2rem;
+    }
+  }
+
+  &__user-list {
+    margin-top: 2rem;
+  }
+}
