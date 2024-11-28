@@ -23,6 +23,7 @@ $routes = [
     __SITE_REPOSITORY__.'/admin/equipment/delete' => 'AdminController@deleteEquipment',
     __SITE_REPOSITORY__.'/admin/user/list'        => 'AdminController@listUser',
     __SITE_REPOSITORY__.'/admin/user/add'         => 'AdminController@addUser',
+    __SITE_REPOSITORY__.'/admin/user/delete'      => 'AdminController@addUser',
 
 ];
 

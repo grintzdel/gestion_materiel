@@ -19,6 +19,7 @@ ob_start();
             <th>Email</th>
             <th>Role</th>
             <th>A une clé</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -31,6 +32,9 @@ ob_start();
                 <td><?= $user['email'] ?></td>
                 <td><?= $user['role'] ?></td>
                 <td><?= $user['id_clef'] ? 'Oui' : 'Non' ?></td>
+                <td>
+                    <a href="<?= __SITE_REPOSITORY__ ?>/admin/user/delete?id=<?= $user['id'] ?>">Supprimer</a>
+                </td>
             </tr>
         <?php endforeach; ?>
         </tbody>
