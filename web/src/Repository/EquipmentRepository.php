@@ -246,4 +246,24 @@ class EquipmentRepository
             throw new Exception("Erreur lors de la réservation de l'équipement : " . $e->getMessage());
         }
     }
+
+    public static function getReservation($id_user)
+    {
+        try {
+            $db = DatabaseManager::getInstance();
+
+            $id_user = max(1, intval($id_user));
+
+            return $db->select("
+                SELECT * 
+                FROM reservation r
+                LEFT JOIN equipment e ON e.id_equipment = r.id_equipment
+                WHERE id_user = :id_user
+                ", [
+                'id_user' => $id_user
+            ]);
+        } catch (Exception $e) {
+            throw new Exception("Erreur lors de la récupération du panier : " . $e->getMessage());
+        }
+    }
 }

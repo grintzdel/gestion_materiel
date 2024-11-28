@@ -5,6 +5,7 @@ ob_start();
 ob_start();
 /**
  * @var array $cart
+ * @var array $reservation
  */
 ?>
 <h1>Cart</h1>
@@ -45,6 +46,37 @@ ob_start();
         <p><?= $error ?></p>
     <?php endif; ?>
 <?php endif; ?>
+
+<br><br>
+<h1>Réservation</h1>
+<?php if (empty($reservation)): ?>
+    <p>Tu n'as jamais eu de reservation</p>
+<?php else: ?>
+    <table>
+        <thead>
+        <tr>
+            <th>Equipment</th>
+            <th>Quantity</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($reservation as $item): ?>
+            <tr>
+                <td><?= $item['name'] ?></td>
+                <td><?= $item['quantity'] ?></td>
+                <td><?= $item['start'] ?></td>
+                <td><?= $item['end'] ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>
+
+
+
 
 <?php
 $content = ob_get_clean();

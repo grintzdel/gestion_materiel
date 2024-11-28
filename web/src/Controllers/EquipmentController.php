@@ -130,10 +130,12 @@ class EquipmentController
 
         $id_user = $_SESSION['user_info']['id'];
         $cart = EquipmentRepository::getPannier($id_user);
+        $reservation = EquipmentRepository::getReservation($id_user);
 
         Template::renderTemplate('templates/pages/equipment/cart.php', [
-            'cart' => $cart,
-            'error' => $error,
+            'cart'        => $cart,
+            'error'       => $error,
+            'reservation' => $reservation,
         ]);
     }
 
