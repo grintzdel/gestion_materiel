@@ -17,7 +17,7 @@
                         <div class="header__nav__menu__list__items__item__wrapper"></div>
                     </div>
                     <div class="header__nav__menu__list__items__item">
-                        <a href="<?= __SITE_REPOSITORY__ ?>/">Panier</a>
+                        <a href="<?= __SITE_REPOSITORY__ ?>/equipment/listPannier">Panier</a>
                         <div class="header__nav__menu__list__items__item__wrapper"></div>
                     </div>
                     <div class="header__nav__menu__list__items__item">

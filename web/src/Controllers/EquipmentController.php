@@ -9,6 +9,7 @@ class EquipmentController
 {
     public function equipmentListAndTemplate()
     {
+        EquipmentRepository::quantityUpdate();
         $materials = EquipmentRepository::getAll();
         $categories = CategorieRepository::getAllCategorie();
 
@@ -26,6 +27,7 @@ class EquipmentController
         $data = json_decode($rawData, true);
         $categories = $data['categories'] ?? [];
 
+        EquipmentRepository::quantityUpdate();
         if (empty($categories)) {
             $results = EquipmentRepository::getAll();
         } else {
@@ -58,6 +60,7 @@ class EquipmentController
 
     public function showOne($id = null, $error = null)
     {
+        EquipmentRepository::quantityUpdate();
         $id = intval($_GET['id'] ?? $id);
 
         $equipment = EquipmentRepository::getOne($id);
@@ -79,6 +82,8 @@ class EquipmentController
             header('Location: ' . __SITE_REPOSITORY__ . '/connexion');
             exit;
         }
+
+        EquipmentRepository::quantityUpdate();
 
         $id_equipment = intval($_POST['id']) ?? null;
         $quantity     = max(1, intval($_POST['quantity'])) ?? null;
@@ -161,6 +166,7 @@ class EquipmentController
             header('Location: ' . __SITE_REPOSITORY__ . '/connexion');
             exit;
         }
+        EquipmentRepository::quantityUpdate();
 
         $id_user = $_SESSION['user_info']['id'];
         $carts = EquipmentRepository::getPannier($id_user);

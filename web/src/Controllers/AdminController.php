@@ -17,6 +17,7 @@ class AdminController
         if ($_SESSION['user_info']['role'] !== 'admin') {
             header('Location: ' . __SITE_REPOSITORY__ . '/profil');
         }
+        EquipmentRepository::quantityUpdate();
 
         $materials = EquipmentRepository::getAll();
         $categories = CategorieRepository::getAllCategorie();
@@ -36,6 +37,8 @@ class AdminController
         if ($_SESSION['user_info']['role'] !== 'admin') {
             header('Location: ' . __SITE_REPOSITORY__ . '/profil');
         }
+        EquipmentRepository::quantityUpdate();
+
         $error = null;
 
         $name             = htmlspecialchars(filter_input(INPUT_POST, 'name'));
@@ -87,6 +90,8 @@ class AdminController
         if ($_SESSION['user_info']['role'] !== 'admin') {
             header('Location: ' . __SITE_REPOSITORY__ . '/profil');
         }
+        EquipmentRepository::quantityUpdate();
+
         $error = null;
         $id_equipment = $_GET['id_equipment'];
 
@@ -159,6 +164,8 @@ class AdminController
             header('Location: ' . __SITE_REPOSITORY__ . '/profil');
             exit;
         }
+        EquipmentRepository::quantityUpdate();
+
         $id_equipment = $_GET['id_equipment'];
 
         EquipmentRepository::deleteById($id_equipment);

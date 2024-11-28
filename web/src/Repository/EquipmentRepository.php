@@ -266,4 +266,20 @@ class EquipmentRepository
             throw new Exception("Erreur lors de la récupération du panier : " . $e->getMessage());
         }
     }
+
+    public static function quantityUpdate()
+    {
+        try {
+            $db = DatabaseManager::getInstance();
+
+            $db->insert("
+                UPDATE equipment e
+                LEFT JOIN reservation r ON r.id_equipment = e.id_equipment
+                SET e.available = e.available + r.quantity
+                WHERE r.end < NOW()
+            ");
+        } catch (Exception $e) {
+            throw new Exception("Erreur lors de la mise à jour de la quantité : " . $e->getMessage());
+        }
+    }
 }
