@@ -38,4 +38,16 @@ class UserRepository
             'password'  => $password,
         ]);
     }
+
+    public static function deleteUser($id)
+    {
+        $db = DatabaseManager::getInstance();
+
+        $query = "
+            DELETE FROM user
+            WHERE id = :id
+            ";
+
+        $db->insert($query, ['id' => $id]);
+    }
 }

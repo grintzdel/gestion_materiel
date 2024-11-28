@@ -237,6 +237,24 @@ class AdminController
         ]);
     }
 
+    public function deleteUser()
+    {
+        if (!$_SESSION['user_info']) {
+            header('Location: ' . __SITE_REPOSITORY__ . '/connexion');
+            exit;
+        }
+        if ($_SESSION['user_info']['role'] !== 'admin') {
+            header('Location: ' . __SITE_REPOSITORY__ . '/profil');
+            exit;
+        }
+
+        $id = $_GET['id'];
+
+        UserRepository::deleteUser($id);
+
+        header('Location: ' . __SITE_REPOSITORY__ . '/admin/user/list');
+    }
+
     public function panel()
     {
         if (!$_SESSION['user_info']) {
