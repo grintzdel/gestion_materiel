@@ -28,7 +28,7 @@ ob_start();
                     <?php foreach ($categories as $category): ?>
                         <li class="filter__list__item">
                             <input type="checkbox" id="category-<?= $category['id_categorie'] ?>" name="category-<?= $category['id_categorie'] ?>">
-                            <label for="category-<?= $category['id_categorie'] ?>"><?= $category['name'] ?><span><?= $category['available'] ?></span></label>
+                            <label for="category-<?= $category['id_categorie'] ?>"><?= $category['name'] ?><span>(<?= $category['available'] ?>)</span></label>
                         </li>
                     <?php endforeach; ?>
                 </ul>
